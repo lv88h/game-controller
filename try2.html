@@ -191,19 +191,13 @@ let saskarasY = false;
       //var x2 = 240;
       //var y2 = 110;
       
-      var bildite = ['https://cf.shopee.com.my/file/ae0b063f9c1e094ee8c03eb5118973e5'];
-      var bildite2 = ['images.jpeg'];
-      var bildite3 = ['images.jpeg'];
-      var visasbildites = bildite.concat(bildite2, bildite3);
-
-      
-      var objekts1 = [40, 40, 40, 40];
+      var objekts1 = [40, 40, 200, 150];
       var objekts2 = [20, 20, 240, 110];
       var objekts3 = [20, 20, 240, 110];
 
 var visiobjekti = objekts1.concat(objekts2, objekts3);
 
-//console.log(visiobjekti);
+console.log(visiobjekti);
       //mansobjekts= new obstacle(width2, height2, x2, y2);
       
       
@@ -287,10 +281,10 @@ var name;
 var name2;
 var name3;
 var name4;
-//var values;
-//var values2;
-//var values3;
-//var values4;
+var values;
+var values2;
+var values3;
+var values4;
 var toghether;
 
 //console.log("ITERACIJA", argskey);
@@ -307,7 +301,7 @@ if(numCallbackRuns == 0){
 // values on given iteration ID are taken from visiobjekti 
 // iteration ID
 //values == visiobjekti[argskey];
-//console.log("nultais callbackruns izaucas ", values);
+console.log("nultais callbackruns izaucas ", values);
 
 ///PIEVIENOQ QQQQQ
 name = '[' + visiobjekti[argskey] + ', ';
@@ -393,7 +387,7 @@ if(index == 2){
 if(index == 3){
 		selectionh = selection;
 
- console.log("selection height masīvs", selectionh);
+ console.log("selection height masīvs", selection);
 
 }
 
@@ -406,10 +400,10 @@ if(index == 3){
 
 //2 un 4 arguments 
 // LOOP CAURI Y UN HEIGHT MASĪVAM LAI IZVEIDOTU MASĪVU AR APAKŠĒJAS MALAS VĒRTĪBĀM
-//var argskeyy = 0;
-//var argskeyx = 0;
-//var argskeyw = 0;
-//var argskeyh = 0;
+var argskeyy = 0;
+var argskeyx = 0;
+var argskeyw = 0;
+var argskeyh = 0;
 //var selectiony = [];
 //var selectionx = [];
 //var collectionsW = [];
@@ -480,7 +474,7 @@ var apaksejamala;
 //} while (i < 5);
 
  
-while(malas < 3){
+do {
 	
 
 //console.log("beigas itera", argskeymalam);
@@ -543,7 +537,7 @@ console.log("LABMALA PUSHOJAS", labamala);
 	malas++;
 
 
-}
+} while (malas > 4);
 
 
 
@@ -573,9 +567,8 @@ var saskarasYLEJA_mas = [];
 	
 
 
-while(argskeysmalam2 < 3){
-
-
+while(argskeysmalam2 < 4){
+//console.log("iteracija", argskeysmalam2);
 //console.log("???", kreisamala_mas[argskeysmalam2]);
 
 
@@ -586,7 +579,6 @@ while(argskeysmalam2 < 3){
 
 if(selectionx[argskeysmalam2] < labamala_mas[argskeysmalam2]){
 if(selectionx[argskeysmalam2] > kreisamala_mas[argskeysmalam2]){
-	
 	
 	
 saskarasX = true;	
@@ -607,8 +599,6 @@ saskarasY = true;
 saskarasYAUGSA_mas.push(saskarasY);
 }
 }
-
-
 if(selectionx[argskeysmalam2] > labamala_mas[argskeysmalam2]){
 if(selectionx[argskeysmalam2] < kreisamala_mas[argskeysmalam2]){
 saskarasX2 = true;	
@@ -642,34 +632,10 @@ argskeysmalam2++;
 
 
 
-if(saskarasXLABA_mas.length === 0){
-saskarasXLABA_mas_skait = 0;
-} else {
-	saskarasXLABA_mas_skait = saskarasXLABA_mas.length;
-}
-
-if(saskarasXKREISA_mas.length === 0){
-saskarasXKREISA_mas_skait = 0;
-}else {
-	saskarasXKREISA_mas_skait = saskarasXKREISA_mas.length;
-}
-
-if(saskarasYAUGSA_mas.length === 0){
-saskarasYAUGSA_mas_skait = 0;
-}else {
-	saskarasYAUGSA_mas_skait = saskarasYAUGSA_mas.length;
-}
-if(saskarasYLEJA_mas.length === 0){
-saskarasYLEJA_mas_skait = 0;
-}else {
-	saskarasYLEJA_mas_skait = saskarasYLEJA_mas.length;
-}
 
 
 
-
-
-var elementimalas_sask = saskarasXLABA_mas_skait + saskarasXKREISA_mas_skait + saskarasYAUGSA_mas_skait + saskarasYLEJA_mas_skait;
+var elementimalas_sask = saskarasXLABA_mas.length + saskarasXKREISA_mas.length + saskarasYAUGSA_mas.length + saskarasYLEJA_mas.length;
 
 
 var argskeysmalam3 = 0;
@@ -802,14 +768,6 @@ saskarasLEJA == false;
 argskeysmalam3++;
 }
 
-if(elementimalas_sask === 0){
-
-saskarasKREISI == false;
-saskarasAUGSA == false;
-saskarasKREISI == false;
-saskarasLEJA == false;
-}
-
 
 
 //console.log("LABI",saskarasLABI);
@@ -850,19 +808,6 @@ saskarasLEJA == false;
 
 
 var IZIETY = 0;
-if(elementimalas_sask === 0){
-
-if(selectiony[IZIETY] < 0){
-	updatey = 0;
-	console.log("iziet no ekrana zem 0 y asī ");
-}
-if(selectiony[IZIETY] > VISAMALA){
-	updatey = VISAMALA;
-	console.log("iziet no ekrana virs VISAMALA y asī");
-}
-
-
-} else {
 while(IZIETY < elementimalas_sask){
 
 
@@ -877,10 +822,6 @@ if(selectiony[IZIETY] > VISAMALA){
 IZIETY++;
 
 }
-}
-
-
-
 //////////////////////
 /////////// IZIET NO EKRANA y ASI
 ////////////////////////
@@ -890,16 +831,6 @@ IZIETY++;
 ////////////////////////
 
 var IZIETX = 0;
-if(elementimalas_sask === 0){
-	if(selectionx[IZIETX] < 0){
-	updatex = 0;
-	console.log("iziet no ekrana zem 0 x asī ");
-}
-if(selectionx[IZIETX] > VISAMALA){
-	updatex = VISAMALA;
-	console.log("iziet no ekrana virs VISAMALA x asī");
-}
-} else {
 while(IZIETX < elementimalas_sask){
 	
 if(selectionx[IZIETX] < 0){
@@ -912,7 +843,6 @@ if(selectionx[IZIETX] > VISAMALA){
 }
 IZIETX++;
 }
-}
 //////////////////////
 /////////// IZIET NO EKRANA X ASI
 ////////////////////////
@@ -922,12 +852,6 @@ IZIETX++;
 ////////////////////////
 
 var IZIETX2 = 0;
-if(elementimalas_sask === 0){
-if(selectionx[IZIETX2] === VISAMALA){
-	updatex -= kreisi;
-	console.log("vajadzētu ņemt pa kreisi");
-}
-} else {
 while(IZIETX2 < elementimalas_sask){
 	
 if(selectionx[IZIETX2] === VISAMALA){
@@ -935,7 +859,6 @@ if(selectionx[IZIETX2] === VISAMALA){
 	console.log("vajadzētu ņemt pa kreisi");
 }
 IZIETX2++;
-}
 }
 //////////////////////
 /////////// X IR VISAMALA
@@ -947,12 +870,6 @@ IZIETX2++;
 //////////////////////// 
 
 var IZIETX3 = 0;
-if(elementimalas_sask === 0){
-if(selectionx[IZIETX3] === 0){
-	updatex += labi;
-	console.log("vajadzētu ņemt pa labi");
-}	
-} else {
 while(IZIETX3 < elementimalas_sask){
 	
 if(selectionx[IZIETX3] === 0){
@@ -960,7 +877,6 @@ if(selectionx[IZIETX3] === 0){
 	console.log("vajadzētu ņemt pa labi");
 }
 IZIETX3++;
-}
 }
 //////////////////////
 /////////// 0 x asi
@@ -973,15 +889,6 @@ IZIETX3++;
 //////////////////////// 
 
 var IZIETY2 = 0;
-if(elementimalas_sask === 0){
-		
-	
-if(selectiony[IZIETY2] === 0){
-	updatey += leju;
-	console.log("vajadzētu ņemt uz leju");
-}
-
-} else {
 while(IZIETY2 < elementimalas_sask){
 	
 	
@@ -990,7 +897,6 @@ if(selectiony[IZIETY2] === 0){
 	console.log("vajadzētu ņemt uz leju");
 }
 IZIETY2++;
-}
 }
 //////////////////////
 /////////// 0 y asi
@@ -1009,122 +915,6 @@ IZIETY2++;
 
 
 var WHATX = 0;
-if(elementimalas_sask === 0){
-
-
-if(selectionx[WHATX] > 0){
-	//console.log(VISAMALA);
-	
-	
-	if(selectionx[WHATX] < VISAMALA){
-		
-		if(saskarasKREISI === false && saskarasLABI === false){
-	
-		updatex += labi;
-		updatex -= kreisi;
-	} else if(saskarasKREISI === false && saskarasLABI === true){
-		
-		
-
-		updatex -= labi;
-		updatex += kreisi;
-		console.log("laba mala 2", labi);
-	
-
-
-	} else if(saskarasKREISI === true && saskarasLABI === false){
-	
-		updatex += labi;
-		updatex -= kreisi;
-		console.log("kreisa mala 2", kreisi);
-
-	
-} else if(saskarasKREISI === true && saskarasLABI === true){
-
-updatex;
-
-
-}
-			
-} else {
-
-console.log("sasniegta labā mala", VISAMALA);
-	console.log("sasniegta labā mala bet x", updatex);
-		console.log("saskārās aiz malas", saskaras);
-		if(saskarasKREISI === false && saskarasLABI === false){
-	
-		updatex += kreisi;
-		//updatex -= kreisi;
-	} else if(saskarasKREISI === false && saskarasLABI === true){
-		
-		
-
-		updatex;
-		console.log("laba mala 2", labi);
-	
-
-
-	} else if(saskarasKREISI === true && saskarasLABI === true){
-
-updatex;
-
-
-}
-
-
-}
-	
-	 //else if(saskarasKREISI === true && saskarasLABI === false){
-	
-		//updatex += labi;
-		//updatex -= kreisi;
-		//console.log("kreisa mala 2", kreisi);
-
-	
-//}
-	
-
-
-
-
-} 
-
-if(selectionx[WHATX] = 0){
-
-console.log("sasniegta kreisā mala");
-if(saskarasKREISI === false && saskarasLABI === false){
-	
-		updatex += labi;
-		//updatex -= kreisi;
-	} else if(saskarasKREISI === false && saskarasLABI === true){
-		
-		
-
-		updatex;
-		console.log("laba mala 2", labi);
-	
-
-
-	} else if(saskarasKREISI === true && saskarasLABI === true){
-
-updatex;
-
-
-}
-
-
-
-
-}
-
-
-WHATX++;
-
-
-
-
-} else {
-	
 while(WHATX < elementimalas_sask){
 	
 	
@@ -1236,7 +1026,6 @@ updatex;
 
 WHATX++;
 }
-}
 
 //////////////////////
 /////////// LIMITI STARP 0 UN VISAMALA x
@@ -1247,14 +1036,6 @@ WHATX++;
 /////////// Y IR VISAMALA
 ////////////////////////
 var IZIETY3 = 0;
-if(elementimalas_sask === 0){
-	
-if(selectiony[IZIETY3] === VISAMALA){
-	updatey -= augsu;
-	console.log("vajadzētu ņemt uz augšu");
-}
-} else {
-
 while(IZIETY3 < elementimalas_sask){
 	
 	
@@ -1264,7 +1045,6 @@ if(selectiony[IZIETY3] === VISAMALA){
 }
 
 IZIETY3++;
-}
 }
 //////////////////////
 /////////// Y IR VISAMALA
@@ -1280,118 +1060,6 @@ IZIETY3++;
 
 
 var WHATY = 0;
-if(elementimalas_sask === 0){
-	
-if(selectiony[WHATY] > 0){
-	//console.log(VISAMALA);
-	
-	
-	if(selectiony[WHATY] < VISAMALA){
-		
-		if(saskarasLEJA === false && saskarasAUGSA === false){
-	
-		updatey += augsu;
-		updatey -= leju;
-	} else if(saskarasLEJA === false && saskarasAUGSA === true){
-		
-		
-
-		updatey -= augsu;
-		updatey += leju;
-		console.log("laba mala 2", augsu);
-	
-
-
-	} else if(saskarasLEJA === true && saskarasAUGSA === false){
-	
-		updatey += augsu;
-		updatey -= leju;
-		console.log("kreisa mala 2", leju);
-
-	
-} else if(saskarasLEJA === true && saskarasAUGSA === true){
-
-updatey;
-
-
-}
-			
-} else {
-
-console.log("sasniegta labā mala", VISAMALA);
-	console.log("sasniegta labā mala bet y", updatey);
-		console.log("saskārās aiz malas", saskaras);
-		if(saskarasLEJA === false && saskarasAUGSA === false){
-	
-		updatey += leju;
-		//updatey -= leju;
-	} else if(saskarasLEJA === false && saskarasAUGSA === true){
-		
-		
-
-		updatey;
-		console.log("laba mala 2", augsu);
-	
-
-
-	} else if(saskarasLEJA === true && saskarasAUGSA === true){
-
-updatey;
-
-
-}
-
-
-}
-	
-	 //else if(saskarasLEJA === true && saskarasAUGSA === false){
-	
-		//updatey += augsu;
-		//updatey -= leju;
-		//console.log("kreisa mala 2", leju);
-
-	
-//}
-	
-
-
-
-
-} 
-
-if(selectiony[WHATY] = 0){
-
-console.log("sasniegta kreisā mala");
-if(saskarasLEJA === false && saskarasAUGSA === false){
-	
-		updatey += augsu;
-		//updatey -= leju;
-	} else if(saskarasLEJA === false && saskarasAUGSA === true){
-		
-		
-
-		updatey;
-		console.log("laba mala 2", augsu);
-	
-
-
-	} else if(saskarasLEJA === true && saskarasAUGSA === true){
-
-updatey;
-
-
-}
-
-
-
-
-}
-
-
-
-WHATY++;
-	
-} else {
 while(WHATY < elementimalas_sask){
 
 if(selectiony[WHATY] > 0){
@@ -1503,7 +1171,6 @@ updatey;
 
 WHATY++;
 }
-}
 
 //////////////////////
 /////////// LIMITI STARP 0 UN VISAMALA  y
@@ -1525,311 +1192,16 @@ WHATY++;
         
         
         
-var updatexV = [];
-var updateyV = [];
-var updatewV = [];
-var updatehV = [];
-var ctxx = [];
-var katramsavuzimet = [];
-//var katramsavuzimet2 = [];
-    var img = new Array(); 
-
-		console.log("visiobjekti.length", visiobjekti.length);
-		
-		
-		flattenkolekcija = collection.flat();
-				console.log("kopumakolekcija", flattenkolekcija.length);
-
-		
-	for(var i = 0; i < flattenkolekcija.length; i++){
-
-katramsavuzimet.push(flattenkolekcija[i]);
-		console.log("IZPILDAS", flattenkolekcija[i]);
-
-}
-					//console.log("pirms flatten", katramsavuzimet[3]);
-
-		for(var i2 = 0; i2 < 4; i2++){
-
-			if(i2 == 0){
-			updatexV.push(katramsavuzimet[i2]);
-		}
-			if(i2 == 1){
-			updateyV.push(katramsavuzimet[i2]);
-		}
-			if(i2 == 2){
-			updatewV.push(katramsavuzimet[i2]);
-		}
-			if(i2 == 3){
-			updatehV.push(katramsavuzimet[i2]);
-		}
-		
-	}
-
-//katramsavuzimet2 = katramsavuzimet.map(x => JSON.parse(x));
-
-
-
-	//for(var h = 0; h < 4; h++){
-//katramsavuzimet3.push(katramsavuzimet2[h]);
-
-//}
-
-
-//katramsavuzimet2.from(katramsavuzimet, x => x + x);
 
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+        ctx = laukums.context;
+        var img = new Image();
+      img.src = "https://cf.shopee.com.my/file/ae0b063f9c1e094ee8c03eb5118973e5";
+        ctx.drawImage(img, updatex, updatey, updatewidth, updateheight);        
         
         
-        
-        
-        
-//let backRuns = 0; //this is iteration that get to 3 and goes to 0
-//var key = 0; // variable for while loop that gets added + 1 every loop
-//var toghether2;
-//// the array that will hold other arrays
-//var collections2 = [];
-
-//// while variable is below count of arguments given
-//// function loop will happen
-////console.log("wtfff", arguments[0].length);
-
-
-//var nname;
-//var nname2;
-//var nname3;
-//var nname4;
-//var nvalues;
-//var toghether2;
-
-////console.log("ITERACIJA", argskey);
-////console.log("LIDZ KURAI", visiobjekti.length);
-////console.log("LIDZ KURAI", katramsavuzimet.length);
-
-//while(key < katramsavuzimet.length){ 
-////every iteration has 4 choices of iteration ID = numCallbackRuns
-
-
-
-////console.log("wtfff", visiobjekti.length);
-
-//if(backRuns == 0){
-//// values on given iteration ID are taken from visiobjekti 
-//// iteration ID
-////values == visiobjekti[argskey];
-//console.log("999999 nultais callbackruns izaucas ", katramsavuzimet[key]);
-
-/////PIEVIENOQ QQQQQ
-//nname = '[' + katramsavuzimet[key] + ', ';
-////console.log("wtf", visiobjekti[argskey]);
-
-//console.log("wtf1", nname);
-
-//}
-//if(backRuns == 1){
-	//console.log("pirmais callbackruns izaucas ");
-
-////values2 = visiobjekti[argskey];
-
-//nname2 = katramsavuzimet[key] + ', ';
-//}
-//if(backRuns == 2){
-	//console.log("otrais callbackruns izaucas ");
-
-////values3 = visiobjekti[argskey];
-
-//nname3 = katramsavuzimet[key] + ', ';
-//}
-
-//if(backRuns == 3){
-	//console.log("trešais callbackruns izaucas ");
-
-////values4 = visiobjekti[argskey];
-
-//nname4 = katramsavuzimet[key] + ']';
-//}
-
-
-
-
-
-////if iteration ID has not yet reached 3, add iteration ID
-//// else next array ID is given to nextmas (++)
-//if(backRuns != 3){
- //backRuns++;
- //} else {
-
-//toghether2 = nname + nname2 + nname3 + nname4;
-////console.log("wtf", toghether);
-
-//collections2.push(toghether2);
- 
-//backRuns = 0;
-//}
-
-////every loop cycle adds default value that
-////is compared to argument element lenght
-//key++;
-//}
-
-var flattenx = updatexV.flat();
-var flatteny = updateyV.flat();
-var flattenw = updatewV.flat();
-var flattenh = updatehV.flat();
-var bildite = visasbildites.flat();
-
-					console.log("augstums", flattenh);
-					console.log("bildite", bildite);
-
-
-
-for(h = 0; h < 4; h++){
-
-
-
-
-ctxx[h] = laukums.context;
-	img[h] = new Image(); 
-	      img[h].src = bildite[h];
-	
-
-
-        ctxx[h].drawImage(img[h], flattenx[h], flatteny[h], flattenw[h], flattenh[h]);      
-
-}
-
-
-
-
-
-//collection2 = collections2.map(x => JSON.parse(x));
-
-//for(let index2 = 0; index2 < collection2[0].length; index2++) {
-	//const selection2 = collection2.map(innerArray => innerArray[index2]);
-
-
-//if(ind == 0){
-	//selectionxX = selection2;
- //console.log("selection2 x masīvs", selectionxX);
-
-//}
-//if(ind == 1){
-		//selectionyY = selection2;
-
- //console.log("selection2 y masīvs", selectionyY);
-
-//}
-//if(ind == 2){
-		//selectionwW = selection2;
-
-  //console.log("selection2 width masīvs", selectionwW);
-
-//}
-//if(ind == 3){
-		//selectionhH = selection2;
-
- //console.log("selection2 height masīvs", selectionhH);
-
-//}
-
-  
-//}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-//console.log("dari", collection[0].length);
-
-
-
-
-
-
-//for(let ind = 0; ind < katramsavuzimet2[0].length; ind++) {
-	//const selection2 = katramsavuzimet.map(innerArray => innerArray[ind]);
-	
-	
-	
-//if(ind == 0){
-	//selectionxX = selection2;
- //console.log("selection2 x masīvs", selectionxX);
-
-//}
-//if(ind == 1){
-		//selectionyY = selection2;
-
- //console.log("selection2 y masīvs", selectionyY);
-
-//}
-//if(ind == 2){
-		//selectionwW = selection2;
-
-  //console.log("selection2 width masīvs", selectionwW);
-
-//}
-//if(ind == 3){
-		//selectionhH = selection2;
-
- //console.log("selection2 height masīvs", selectionhH);
-
-//}
-	
-//}
-	
-
-		//console.log("updatexV", katramsavuzimet);
-
-
-	//ctxx[h] = laukums.context;
-	//img[h] = new Image(); 
-	      //img[h].src = "https://cf.shopee.com.my/file/ae0b063f9c1e094ee8c03eb5118973e5";
-		//console.log("updatexV", updatexV[h]);
-		
-
-        //ctxx[h].drawImage(img[h], updatexV[h], updateyV[h], updatewV[h], updatehV[h]);      
-
-  
-     
-	
-	
-	
-	
-	
-		
-
-
         
         
         

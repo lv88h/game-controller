@@ -192,15 +192,22 @@
       //uz leju
       leju = 0;
 
+     characterwidth = 40;
+      console.log("globals mainigais", characterwidth);
+	characterheight = 40;
 
 
-newPos.apply(this, arguments);
 	
 	updatewidth = arguments[0];
+	        
+
+
+
 	updateheight = arguments[1];
-	updatex = x;
-	updatey = y;
-	
+	updatex = 0;
+	updatey = 0;
+		      console.log("pirmais arguments", arguments[0]);
+newPos.apply(this, arguments);
       //console.log(arguments.length);
       
 
@@ -221,8 +228,7 @@ newPos.apply(this, arguments);
       //this.y3 = y3;
       
       
-      characterwidth = 40;
-	characterheight = 40;
+ 
       
 
      
@@ -230,7 +236,7 @@ newPos.apply(this, arguments);
 //this.newPos.apply(null, arguments);
 
 
-this.update = function() {
+function update() {
         ctx = laukums.context;
         var img = new Image();
       img.src = "https://cf.shopee.com.my/file/ae0b063f9c1e094ee8c03eb5118973e5";
@@ -239,11 +245,11 @@ this.update = function() {
       }
 
 
-this.newPos = function() {
+function newPos() {
 	
       //let characterwidth = 40;
 	//let characterheight = 40;
-      let VISAMALA = 300 - characterwidth;
+      VISAMALA = 300 - characterwidth;
 
 console.log(VISAMALA);
 
@@ -1151,11 +1157,11 @@ if(collectionsY[WHATY] > 0){
 	
 	if(collectionsY[WHATY] < VISAMALA){
 		
-		if(saskarasLEJU === false && saskarasAUGSU === false){
+		if(saskarasLEJA === false && saskarasAUGSA === false){
 	
 		updatey += augsu;
 		updatey -= leju;
-	} else if(saskarasLEJU === false && saskarasAUGSU === true){
+	} else if(saskarasLEJA === false && saskarasAUGSA === true){
 		
 		
 
@@ -1165,14 +1171,14 @@ if(collectionsY[WHATY] > 0){
 	
 
 
-	} else if(saskarasLEJU === true && saskarasAUGSU === false){
+	} else if(saskarasLEJA === true && saskarasAUGSA === false){
 	
 		updatey += augsu;
 		updatey -= leju;
 		console.log("kreisa mala 2", leju);
 
 	
-} else if(saskarasLEJU === true && saskarasAUGSU === true){
+} else if(saskarasLEJA === true && saskarasAUGSA === true){
 
 updatey;
 
@@ -1184,11 +1190,11 @@ updatey;
 console.log("sasniegta labā mala", VISAMALA);
 	console.log("sasniegta labā mala bet y", updatey);
 		console.log("saskārās aiz malas", saskaras);
-		if(saskarasLEJU === false && saskarasAUGSU === false){
+		if(saskarasLEJA === false && saskarasAUGSA === false){
 	
 		updatey += leju;
 		//updatey -= leju;
-	} else if(saskarasLEJU === false && saskarasAUGSU === true){
+	} else if(saskarasLEJA === false && saskarasAUGSA === true){
 		
 		
 
@@ -1197,7 +1203,7 @@ console.log("sasniegta labā mala", VISAMALA);
 	
 
 
-	} else if(saskarasLEJU === true && saskarasAUGSU === true){
+	} else if(saskarasLEJA === true && saskarasAUGSA === true){
 
 updatey;
 
@@ -1207,7 +1213,7 @@ updatey;
 
 }
 	
-	 //else if(saskarasLEJU === true && saskarasAUGSU === false){
+	 //else if(saskarasLEJA === true && saskarasAUGSA === false){
 	
 		//updatey += augsu;
 		//updatey -= leju;
@@ -1225,11 +1231,11 @@ updatey;
 if(collectionsY[WHATY] = 0){
 
 console.log("sasniegta kreisā mala");
-if(saskarasLEJU === false && saskarasAUGSU === false){
+if(saskarasLEJA === false && saskarasAUGSA === false){
 	
 		updatey += augsu;
 		//updatey -= leju;
-	} else if(saskarasLEJU === false && saskarasAUGSU === true){
+	} else if(saskarasLEJA === false && saskarasAUGSA === true){
 		
 		
 
@@ -1238,7 +1244,7 @@ if(saskarasLEJU === false && saskarasAUGSU === false){
 	
 
 
-	} else if(saskarasLEJU === true && saskarasAUGSU === true){
+	} else if(saskarasLEJA === true && saskarasAUGSA === true){
 
 updatey;
 
