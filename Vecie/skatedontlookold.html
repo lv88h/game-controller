@@ -1,0 +1,696 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bootstrap 5 Simple Admin Dashboard</title>
+  <link rel="stylesheet" href="res/bootstrap@5.0.0-alpha2.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+  
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="res/chartist.min.css">
+  <style>
+    .sidebar {
+      position: fixed;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      z-index: 100;
+      padding: 90px 0 0;
+      box-shadow: inset -1px 0 0 rgba(0, 0, 0, .1);
+      z-index: 99;
+    }
+
+    @media (max-width: 767.98px) {
+      .sidebar {
+        top: 11.5rem;
+        padding: 0;
+      }
+    }
+
+    .navbar {
+      box-shadow: inset 0 -1px 0 rgba(0, 0, 0, .1);
+    }
+
+    @media (min-width: 767.98px) {
+      .navbar {
+        top: 0;
+        position: sticky;
+        z-index: 999;
+      }
+    }
+
+    .sidebar .nav-link {
+      color: #333;
+    }
+
+    .sidebar .nav-link.active {
+      color: #0d6efd;
+    }
+  </style>
+</head>
+
+<body>
+  <canvas id="myCanvas" width="300" height="300" style="border:1px solid #c3c3c3;">
+    Your browser does not support the canvas element.
+  </canvas>
+  <style>
+    #rotateMode {
+      border-radius: 50%;
+      width: 125px;
+      height: 125px;
+      background-color: gray;
+      color: white;
+      position: absolute;
+      top: 140px;
+    }
+
+    #left,
+    #right,
+    #up,
+    #down {
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      cursor: pointer;
+    }
+
+    #left,
+    #right {
+      top: 50%;
+      -webkit-transform: translateY(-50%);
+      -moz-transform: translateY(-50%);
+      transform: translateY(-50%);
+    }
+
+    #up,
+    #down {
+      left: 50%;
+      -webkit-transform: translateX(-50%);
+      -moz-transform: translateX(-50%);
+      transform: translateX(-50%);
+    }
+
+    #left {
+      left: 0;
+    }
+
+    #right {
+      right: 0;
+    }
+
+    #up {
+      top: 0;
+    }
+
+    #down {
+      bottom: 0;
+    }
+  </style>
+  <div class="circleBase" id="rotateMode"> <button id="left" class="btn btn-default btn-sm">
+      <span class="glyphicon glyphicon-arrow-left"></span>
+    </button>
+    <button id="right" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-arrow-right"></span>
+    </button>
+    <button id="up" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-arrow-up"></span></button> <button id="down" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-arrow-down"></span>
+    </button>
+  </div>
+  
+  
+
+  
+
+
+
+  
+  
+  
+  
+  <script>
+    greetstart();
+
+    function greetstart() {
+      //alert(xaxis);
+      //alert(yaxis);
+      canvas = document.getElementById("myCanvas");
+      ctx = canvas.getContext("2d");
+      //ctx.translate(140, 140);
+      
+      var img = new Image();
+      img.src = "https://cf.shopee.com.my/file/ae0b063f9c1e094ee8c03eb5118973e5";
+
+      img.onload = function() {
+        ctx.drawImage(img, 100, 100, 80, 80);
+      };
+      //canvas.id = "myCanvas";
+      //document.body.appendChild(canvas);
+    }
+
+
+
+function greet(xaxis, yaxis, check, apturet) {
+      c = xaxis;
+      d = yaxis;
+      //alert(check);
+      if(check === true){
+        //alert("pieskaita");
+        if(xaxis != 220){
+        xaxis2 = xaxis+5;
+        
+        } else {
+        xaxis2 = xaxis;
+        }
+        
+      } else {
+        //alert("atnem");
+        if(xaxis != 0){
+        xaxis2 = xaxis-5;
+        } else {
+        xaxis2 = xaxis;
+        }
+      }
+      //alert(xaxis2);
+      //alert(xaxis3);
+      //alert(xaxis2);
+      canvas = document.getElementById("myCanvas");
+      ctx = canvas.getContext("2d");
+var canvas = document.getElementById("myCanvas"); 
+var ctx = canvas.getContext("2d");
+
+function drawBall() { 
+var img = new Image();
+img.src = "https://cf.shopee.com.my/file/ae0b063f9c1e094ee8c03eb5118973e5";
+img.onload = function() {
+        ctx.drawImage(img, xaxis2, yaxis, 80, 80);
+      };
+} 
+  
+function draw(){ 
+  
+  if(apturet = false){
+    //alert(111);
+  }
+  
+    if(apturet = true){
+    ctx.clearRect(0, 0, canvas.width, canvas.height); 
+    drawBall();
+    }
+} 
+  //  function nomGlobX(xaxis, yaxis2){
+        //if(apturet = true){
+  a = xaxis2;
+  b = yaxis;
+     //   }  
+  //}
+
+   
+    setTimeout(draw, 90);
+    //setTimeout(nomGlobX, 91);
+
+
+
+    
+      
+    //  canvas.id = "myCanvas";
+    //  document.body.appendChild(canvas);
+   
+   //ctx.clearRect(0,0,width,height);
+   
+   //ctx.translate(xaxis3, yaxis);
+   
+   //ctx.fillStyle = 'white';
+   //ctx.clearRect(0, 0, 80, 80);
+   //ctx.setTransform(1, 0, 0, 1, 0, 0);
+   
+   //NOMAINA GLOBĀLO MAINĪGO
+   
+   //ctx.setTransform(1, 0, 0, 1, 0, 0);
+}
+    
+
+
+function greety(xaxis, yaxis, check, apturet) {
+      c = xaxis;
+      d = yaxis;
+      //alert(check);
+      if(check === true){
+      //alert("pieskaita");
+      if(yaxis != 220){
+      yaxis2 = yaxis+5;
+      } else {
+      yaxis2 = yaxis;
+      }
+      
+      
+      } else {
+      //alert("atnem");
+      if(yaxis != 0){
+      yaxis2 = yaxis-5;
+      } else {
+      yaxis2 = yaxis;
+      }
+      
+      }
+      //alert(xaxis2);
+      //alert(xaxis3);
+      //alert(xaxis2);
+      canvas = document.getElementById("myCanvas");
+      ctx = canvas.getContext("2d");
+      
+      
+
+var canvas = document.getElementById("myCanvas"); 
+var ctx = canvas.getContext("2d");
+
+
+
+function drawBallY() { 
+  var img = new Image();
+      img.src = "https://cf.shopee.com.my/file/ae0b063f9c1e094ee8c03eb5118973e5";
+      
+      img.onload = function() {
+        ctx.drawImage(img, xaxis, yaxis2, 80, 80);
+      };
+  } 
+  
+  function drawY() { 
+    if(apturet = false){
+    //alert(111);
+    }
+        //alert(apturet);
+  if(apturet = true){
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    drawBallY();
+  }
+  }
+  
+  
+  a = xaxis;
+  b = yaxis2;
+  
+  
+
+   
+    setTimeout(drawY, 90);
+    //setTimeout(nomGlobY, 91);
+
+
+
+    
+      
+    //  canvas.id = "myCanvas";
+    //  document.body.appendChild(canvas);
+   
+   //ctx.clearRect(0,0,width,height);
+   
+   //ctx.translate(xaxis3, yaxis);
+   
+   //ctx.fillStyle = 'white';
+   //ctx.clearRect(0, 0, 80, 80);
+   //ctx.setTransform(1, 0, 0, 1, 0, 0);
+   
+   //NOMAINA GLOBĀLO MAINĪGO
+   
+   //ctx.setTransform(1, 0, 0, 1, 0, 0);
+}
+    
+
+
+
+
+
+
+
+
+    
+
+
+
+    //definē globālos mainīgos
+    var a = 100;
+    var b = 100;
+
+ //setInterval(function(){ 
+   //alert("x");
+   //alert(a); 
+  // alert("y");
+  // alert(b);
+   
+// },
+   
+ //  15000);
+//alert("y ass ir");
+//alert(b);
+//alert("x ass ir");
+//alert(a);
+
+
+let item = document.querySelector("#left"); 
+let timerID; 
+let counter = 0; 
+let pressHoldEvent = new CustomEvent("pressHold"); 
+// Increase or decreae value to adjust how long 
+// one should keep pressing down before the pressHold 
+// event fires 
+let pressHoldDuration = 360; 
+
+// Listening for the mouse and touch events 
+item.addEventListener("mousedown", pressingDown, false); 
+item.addEventListener("mouseup", notPressingDown, false); 
+item.addEventListener("mouseleave", notPressingDown, false); 
+item.addEventListener("touchstart", pressingDown, false); 
+item.addEventListener("touchend", notPressingDown, false);
+
+
+//document.getElementById('left').addEventListener('touchstart', function () { pressingDown } , false); 
+//document.getElementById('left').addEventListener('touchend', function () { notPressingDown } , false); 
+
+
+// Listening for our custom pressHold event 
+
+item.addEventListener("pressHold", pressingDown, false); 
+function pressingDown(e) { 
+  // Start the timer 
+  requestAnimationFrame(timer);
+  doSomething();
+  e.preventDefault(); 
+  //pressHoldDuration++;
+  console.log("Pressing!"); 
+  c = a;
+  d = b;
+  check = false;
+  //alert(check);
+  apturet = false;
+  greet(c, d, check, apturet);
+} 
+  
+  function notPressingDown(e) { 
+    // Stop the timer
+    cancelAnimationFrame(timerID);
+    pressHoldDuration = 0; 
+    counter = 1;
+    //
+    //alert(pressHoldDuration);
+    //console.log("Not pressing!"); 
+    c = a;
+    d = b;
+    check = false;
+    //alert(check);
+    apturet = true;
+    greet(c, d, check, apturet);
+  } 
+    
+    // // Runs at 60fps when you are pressing down 
+    // 
+    
+    function timer() { 
+      console.log("Timer tick!"); 
+      c = a;
+      d = b;
+      check = false;
+      //alert(check);
+      apturet = false;
+      greet(c, d, check, apturet);
+      
+      
+      if (counter < pressHoldDuration) { timerID = requestAnimationFrame(timer); 
+      counter++;
+      
+      
+      
+      
+      } else { 
+        //console.log("Press threshold reached!");
+    item.dispatchEvent(pressHoldEvent); 
+        counter = 0;
+      }
+      }
+      
+      function doSomething(e) { 
+        
+        //console.log("pressHold event fired!"); 
+        
+        
+        
+        
+        
+      }
+
+
+
+
+
+
+let item2 = document.querySelector("#right"); 
+let timerID2; 
+let counter2 = 0; 
+let pressHoldEvent2 = new CustomEvent("pressHold"); 
+// Increase or decreae value to adjust how long 
+// one should keep pressing down before the pressHold 
+// event fires 
+let pressHoldDuration2 = 360; 
+
+// Listening for the mouse and touch events 
+item2.addEventListener("mousedown", pressingDown2, false); 
+item2.addEventListener("mouseup", notPressingDown2, false); 
+item2.addEventListener("mouseleave", notPressingDown2, false); 
+item2.addEventListener("touchstart", pressingDown2, false); 
+item2.addEventListener("touchend", notPressingDown2, false);
+
+//document.getElementById('right').addEventListener('touchstart', function () { pressingDown2 } , false);
+//document.getElementById('right').addEventListener('touchend', function () { notPressingDown2 } , false);
+
+
+// Listening for our custom pressHold event 
+
+item2.addEventListener("pressHold", pressingDown2, false); 
+function pressingDown2(e) { 
+  // Start the timer 
+  requestAnimationFrame(timer2);
+  //pressHoldDuration2++;
+  e.preventDefault(); 
+  console.log("Pressing!"); 
+  //alert(a);
+        c = a;
+        d = b;
+        check = true;
+        apturet = false;
+        
+        greet(c, d, check, apturet);
+} 
+  
+  function notPressingDown2(e) { 
+    // Stop the timer
+    cancelAnimationFrame(timerID2);
+    pressHoldDuration2 = 0; 
+    counter2 = 1;
+   // console.log("Not pressing!"); 
+    //alert(a);
+        c = a;
+        d = b;
+        check = true;
+        apturet = true;
+        
+        greet(c, d, check, apturet);
+    //alert(holdcounting);
+  } 
+    
+    // // Runs at 60fps when you are pressing down 
+    // 
+    
+    function timer2() { 
+     // console.log("Timer tick!"); 
+      //alert(a);
+        c = a;
+        d = b;
+        check = true;
+        apturet = false;
+        
+        greet(c, d, check, apturet);
+      if (counter2 < pressHoldDuration2) { timerID2 = requestAnimationFrame(timer2); 
+      counter2++; 
+      
+      
+      
+      
+      } else { 
+       // console.log("Press threshold reached!");
+    item2.dispatchEvent(pressHoldEvent); counter2 = 0;
+        
+      }
+      }
+      
+      function doSomething2(e) { 
+       // console.log("pressHold event fired!");
+        
+        
+      
+  }
+
+
+let item3 = document.querySelector("#up"); 
+let timerID3; 
+let counter3 = 0; 
+let pressHoldEvent3 = new CustomEvent("pressHold"); 
+// Increase or decreae value to adjust how long 
+// one should keep pressing down before the pressHold 
+// event fires 
+let pressHoldDuration3 = 360; 
+
+// Listening for the mouse and touch events 
+item3.addEventListener("mousedown", pressingDown3, false); 
+item3.addEventListener("mouseup", notPressingDown3, false); 
+item3.addEventListener("mouseleave", notPressingDown3, false); 
+item3.addEventListener("touchstart", pressingDown3, false); 
+item3.addEventListener("touchend", notPressingDown3, false);
+
+//document.getElementById('up').addEventListener('touchstart', function () { pressingDown3 } , false);
+//document.getElementById('up').addEventListener('touchend', function () { notPressingDown3 } , false);
+
+// Listening for our custom pressHold event 
+
+item3.addEventListener("pressHold", pressingDown3, false); 
+function pressingDown3(e) { 
+  // Start the timer 
+  requestAnimationFrame(timer3);
+  //pressHoldDuration3++;
+  e.preventDefault(); 
+  console.log("Pressing!");
+        c = a;
+        d = b;
+        check = false;
+        apturet = false;
+        
+        greety(c, d, check, apturet);
+} 
+  
+  function notPressingDown3(e) { 
+    // Stop the timer
+    cancelAnimationFrame(timerID3);
+    pressHoldDuration3 = 0; 
+    counter3 = 1;
+    //console.log("Not pressing!"); 
+        c = a;
+        d = b;
+        check = false;
+        apturet = true;
+        greety(c, d, check, apturet);
+  } 
+    
+    // // Runs at 60fps when you are pressing down 
+    // 
+    
+    function timer3() { 
+      //console.log("Timer tick!"); 
+        c = a;
+        d = b;
+        check = false;
+        apturet = false;
+        greety(c, d, check, apturet);
+      
+      if (counter3 < pressHoldDuration3) { timerID3 = requestAnimationFrame(timer3); 
+      counter3++; 
+      } else { 
+        //console.log("Press threshold reached!");
+    item3.dispatchEvent(pressHoldEvent); counter3 = 0;
+        
+      }
+      }
+      
+      function doSomething3(e) { 
+        //console.log("pressHold event fired!");
+        
+        
+  }
+
+
+let item4 = document.querySelector("#down"); 
+let timerID4; 
+let counter4 = 0; 
+let pressHoldEvent4 = new CustomEvent("pressHold"); 
+// Increase or decreae value to adjust how long 
+// one should keep pressing down before the pressHold 
+// event fires 
+let pressHoldDuration4 = 360; 
+
+// Listening for the mouse and touch events 
+item4.addEventListener("mousedown", pressingDown4, false); 
+item4.addEventListener("mouseup", notPressingDown4, false); 
+item4.addEventListener("mouseleave", notPressingDown4, false); 
+item4.addEventListener("touchstart", pressingDown4, false); 
+item4.addEventListener("touchend", notPressingDown4, false);
+
+//document.getElementById('down').addEventListener('touchstart', function () { pressingDown4 } , false);
+//document.getElementById('down').addEventListener('touchend', function () { notPressingDown4 } , false);
+
+
+
+// Listening for our custom pressHold event
+
+item4.addEventListener("pressHold", pressingDown4, false); 
+function pressingDown4(e) { 
+  // Start the timer 
+  requestAnimationFrame(timer4);
+  //pressHoldDuration4++;
+  e.preventDefault(); 
+  console.log("Pressing!");
+        c = a;
+        d = b;
+        check = true;
+        apturet = false;
+        greety(c, d, check, apturet);
+} 
+  
+  function notPressingDown4(e) { 
+    // Stop the timer
+    cancelAnimationFrame(timerID4);
+    pressHoldDuration4 = 0; 
+    
+    //console.log("Not pressing!"); 
+        c = a;
+        d = b;
+        check = true;
+        apturet = true;
+        greety(c, d, check, apturet);
+  } 
+    
+    // // Runs at 60fps when you are pressing down 
+    // 
+    
+    function timer4() { 
+     // console.log("Timer tick!"); 
+        c = a;
+        d = b;
+        check = true;
+        apturet = false;
+        greety(c, d, check, apturet);
+      
+      
+      if (counter4 < pressHoldDuration4) { timerID3 = requestAnimationFrame(timer4); 
+      counter4++; 
+      
+      
+      
+        
+      } else { 
+        //console.log("Press threshold reached!");
+    item4.dispatchEvent(pressHoldEvent); counter4 = 0;
+        
+      }
+      
+    }
+      
+      function doSomething4(e) { 
+        //console.log("pressHold event fired!");
+        
+        
+  }
+
+  </script>
+</body>
+
+</html>

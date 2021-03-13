@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title></title>
+</head>
+
+<body>
+
+<script>
+
+array1 = ["fruit","vegetables"]; 
+array2 = [["apple","banana"],["tomato"]]; array2.map((a,i) => a.unshift(array1[i])); 
+console.log(array2);
+
+
+ const arraySparse = [1,2,3,4,5];
+ let numCallbackRuns = 0;
+ arraySparse.forEach(function(element) { console.log(element); 
+ if(numCallbackRuns == 0){
+   console.log("pirmā iterācija");
+ }
+ if(numCallbackRuns == 1){
+   console.log("otra iteracija");
+ }
+ 
+ if(numCallbackRuns == 2){
+ console.log("trešā iterācija");
+ }
+ if(numCallbackRuns == 3){
+ console.log("ceturtā iteracija");
+ }
+ if(numCallbackRuns < 4){
+ numCallbackRuns++;
+ } else {
+numCallbackRuns = 0;
+}
+
+ });
+ 
+ 
+// console.log("numCallbackRuns: ", numCallbackRuns) 
+
+  
+  
+</script>
+
+
+</body>
+
+</html>

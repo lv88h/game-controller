@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bootstrap 5 Simple Admin Dashboard</title>
+  <link rel="stylesheet" href="res/bootstrap@5.0.0-alpha2.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="res/chartist.min.css">
+  <style>
+    .sidebar {
+      position: fixed;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      z-index: 100;
+      padding: 90px 0 0;
+      box-shadow: inset -1px 0 0 rgba(0, 0, 0, .1);
+      z-index: 99;
+    }
+
+    @media (max-width: 767.98px) {
+      .sidebar {
+        top: 11.5rem;
+        padding: 0;
+      }
+    }
+
+    .navbar {
+      box-shadow: inset 0 -1px 0 rgba(0, 0, 0, .1);
+    }
+
+    @media (min-width: 767.98px) {
+      .navbar {
+        top: 0;
+        position: sticky;
+        z-index: 999;
+      }
+    }
+
+    .sidebar .nav-link {
+      color: #333;
+    }
+
+    .sidebar .nav-link.active {
+      color: #0d6efd;
+    }
+  </style>
+</head>
+
+<body>
+  <canvas id="myCanvas" width="300" height="300" style="border:1px solid #c3c3c3;">
+    Your browser does not support the canvas element.
+  </canvas>
+  <style>
+    #rotateMode {
+      border-radius: 50%;
+      width: 125px;
+      height: 125px;
+      background-color: gray;
+      color: white;
+      position: absolute;
+      top: 340px;
+    }
+
+    #left,
+    #right,
+    #up,
+    #down {
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      cursor: pointer;
+    }
+
+    #left,
+    #right {
+      top: 50%;
+      -webkit-transform: translateY(-50%);
+      -moz-transform: translateY(-50%);
+      transform: translateY(-50%);
+    }
+
+    #up,
+    #down {
+      left: 50%;
+      -webkit-transform: translateX(-50%);
+      -moz-transform: translateX(-50%);
+      transform: translateX(-50%);
+    }
+
+    #left {
+      left: 0;
+    }
+
+    #right {
+      right: 0;
+    }
+
+    #up {
+      top: 0;
+    }
+
+    #down {
+      bottom: 0;
+    }
+  </style>
+  <div class="circleBase" id="rotateMode"> <button id="left" class="btn btn-default btn-sm">
+      <span class="glyphicon glyphicon-arrow-left"></span>
+    </button>
+    <button id="right" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-arrow-right"></span>
+    </button>
+    <button id="up" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-arrow-up"></span></button> <button id="down" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-arrow-down"></span>
+    </button>
+  </div>
+  <script>
+    var raditpaz = false;
+
+
+    greet(140, 140);
+
+    function greet(xaxis, yaxis) {
+      a = xaxis;
+      b = yaxis;
+      canvas = document.getElementById("myCanvas");
+      ctx = canvas.getContext("2d");
+      ctx.translate(xaxis, yaxis);
+      ctx.fillStyle = 'black';
+      ctx.fillRect(0, 0, 10, 10);
+      ctx.setTransform(1, 0, 0, 1, 0, 0);
+
+      var img = new Image();
+      img.src = "https://cf.shopee.com.my/file/ae0b063f9c1e094ee8c03eb5118973e5";
+
+      img.onload = function() {
+        ctx.drawImage(img, 0, 0, 80, 80);
+      };
+      canvas.id = "myCanvas";
+      document.body.appendChild(canvas);
+    }
+
+
+
+
+
+
+
+
+
+
+    function greetplusx(xaxis, yaxis, check) {
+      c = xaxis;
+      d = yaxis;
+      canvas = document.getElementById("myCanvas");
+      ctx = canvas.getContext("2d");
+      ctx.translate(xaxis, yaxis);
+      ctx.fillStyle = 'black';
+      ctx.fillRect(0, 0, 10, 10);
+      //alert("pieliek x asi koord (black)");
+      //alert(c)
+
+      if (check = true) {
+        a = c;
+      }
+      ctx.setTransform(1, 0, 0, 1, 0, 0);
+    }
+
+
+    function greetminusx(xaxis, yaxis, check) {
+      c = xaxis;
+      d = yaxis;
+
+      //vecā četrstūra y
+      canvas = document.getElementById("myCanvas");
+      ctx = canvas.getContext("2d");
+      //uzzīmē jaanu četrstūri
+      ctx.translate(xaxis, yaxis);
+      ctx.fillStyle = 'white';
+      ctx.fillRect(0, 0, 10, 10);
+      //alert("nonem x asī koord (white)");
+      //alert(c);
+
+      if (check = false) {
+        a = c;
+      }
+      ctx.setTransform(1, 0, 0, 1, 0, 0);
+    }
+
+    function greetplusy(xaxis, yaxis, check) {
+      c = xaxis;
+      d = yaxis;
+      canvas = document.getElementById("myCanvas");
+      ctx = canvas.getContext("2d");
+      ctx.translate(xaxis, yaxis);
+      ctx.fillStyle = 'black';
+      ctx.fillRect(0, 0, 10, 10);
+      //alert("pieliek y asi koord (black)");
+      //alert(d);
+
+      if (check = true) {
+        b = d;
+      }
+      ctx.setTransform(1, 0, 0, 1, 0, 0);
+    }
+
+    function greetminusy(xaxis, yaxis, check) {
+      c = xaxis;
+      d = yaxis;
+      //vecā četrstūra y
+      canvas = document.getElementById("myCanvas");
+      ctx = canvas.getContext("2d");
+      //uzzīmē jaanu četrstūri
+      ctx.translate(xaxis, yaxis);
+      ctx.fillStyle = 'white';
+      ctx.fillRect(0, 0, 10, 10);
+
+      //alert("nonem y asi koord (white)");
+      //alert(d);
+
+      if (check = false) {
+        b = d;
+      }
+      ctx.setTransform(1, 0, 0, 1, 0, 0);
+    }
+
+
+
+
+
+    //definē globālos mainīgos
+    var a = 140;
+    var b = 140;
+
+
+
+
+
+    $("#left").click(function() {
+      $(this).data('clicked', true);
+
+      if (a > 0) {
+        a = a - 10;
+        b = b;
+        c = a;
+        d = b;
+        var check = true;
+
+
+
+
+
+        greetplusx(c, d, check);
+        greetminusx(c + 10, d, check);
+
+
+
+      }
+    });
+
+    $("#right").click(function() {
+      $(this).data('clicked', true);
+
+
+
+      if (a < 290) {
+        a = a + 10;
+        b = b;
+        c = a;
+        d = b;
+        var check = false;
+
+
+        greetplusx(c, d, check);
+        greetminusx(c - 10, d, check);
+      }
+
+
+
+
+
+
+
+    });
+
+
+
+    $("#down").click(function() {
+      $(this).data('clicked', true);
+      //var b3 = b-10;
+
+
+
+      if (b < 290) {
+        a = a;
+        b = b + 10;
+        c = a;
+        d = b;
+        var check = true;
+
+
+
+
+        greetplusy(c, d, check);
+        greetminusy(c, d - 10, check);
+
+
+      }
+
+
+    });
+
+
+    $("#up").click(function() {
+      $(this).data('clicked', true);
+      //var b3 = b+10;
+
+
+      if (b > 0) {
+        a = a;
+        b = b - 10;
+        c = a;
+        d = b;
+        var check = false;
+
+
+
+
+
+        greetplusy(c, d, check);
+        greetminusy(c, d + 10, check);
+      }
+
+
+
+    });
+  </script>
+</body>
+
+</html>

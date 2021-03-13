@@ -1,0 +1,692 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bootstrap 5 Simple Admin Dashboard</title>
+  <link rel="stylesheet" href="res/bootstrap@5.0.0-alpha2.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+  
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="res/chartist.min.css">
+  <style>
+    .sidebar {
+      position: fixed;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      z-index: 100;
+      padding: 90px 0 0;
+      box-shadow: inset -1px 0 0 rgba(0, 0, 0, .1);
+      z-index: 99;
+    }
+
+    @media (max-width: 767.98px) {
+      .sidebar {
+        top: 11.5rem;
+        padding: 0;
+      }
+    }
+
+    .navbar {
+      box-shadow: inset 0 -1px 0 rgba(0, 0, 0, .1);
+    }
+
+    @media (min-width: 767.98px) {
+      .navbar {
+        top: 0;
+        position: sticky;
+        z-index: 999;
+      }
+    }
+
+    .sidebar .nav-link {
+      color: #333;
+    }
+
+    .sidebar .nav-link.active {
+      color: #0d6efd;
+    }
+  </style>
+</head>
+
+<body>
+  <canvas id="myCanvas" width="300" height="300" style="border:1px solid #c3c3c3;">
+    Your browser does not support the canvas element.
+  </canvas>
+  <style>
+    #rotateMode {
+      border-radius: 50%;
+      width: 125px;
+      height: 125px;
+      background-color: gray;
+      color: white;
+      position: absolute;
+      top: 340px;
+    }
+
+    #left,
+    #right,
+    #up,
+    #down {
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      cursor: pointer;
+    }
+
+    #left,
+    #right {
+      top: 50%;
+      -webkit-transform: translateY(-50%);
+      -moz-transform: translateY(-50%);
+      transform: translateY(-50%);
+    }
+
+    #up,
+    #down {
+      left: 50%;
+      -webkit-transform: translateX(-50%);
+      -moz-transform: translateX(-50%);
+      transform: translateX(-50%);
+    }
+
+    #left {
+      left: 0;
+    }
+
+    #right {
+      right: 0;
+    }
+
+    #up {
+      top: 0;
+    }
+
+    #down {
+      bottom: 0;
+    }
+  </style>
+  <div class="circleBase" id="rotateMode"> <button id="left" class="btn btn-default btn-sm">
+      <span class="glyphicon glyphicon-arrow-left"></span>
+    </button>
+    <button id="right" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-arrow-right"></span>
+    </button>
+    <button id="up" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-arrow-up"></span></button> <button id="down" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-arrow-down"></span>
+    </button>
+  </div>
+  
+  
+
+  
+
+
+
+  
+  
+  
+  <script> 
+  
+  //greetstart draws canvas element at start of the game
+  greetstart();
+
+    function greetstart() {
+      //alert(xaxis);
+      //alert(yaxis);
+      canvas = document.getElementById("myCanvas");
+      ctx = canvas.getContext("2d");
+      //ctx.translate(140, 140);
+      
+      var img = new Image();
+      img.src = "https://cf.shopee.com.my/file/ae0b063f9c1e094ee8c03eb5118973e5";
+
+      img.onload = function() {
+        ctx.drawImage(img, 100, 100, 80, 80);
+      };
+      //canvas.id = "myCanvas";
+      //document.body.appendChild(canvas);
+    }
+    
+    //pa labi
+//pieskaita = true;
+// abos gadijumus 
+//apturet = false;
+//pa kreisi pieskaita = false
+
+//greet draws element left to right
+//in x axis
+// also greet clears rectangles that were old position on rectangle
+
+function greet(xaxis, yaxis, pieskaita, apturet) {
+      c = xaxis;
+      d = yaxis;
+      //alert(apturet);
+      //alert(apturet);
+      //console.log("ko darit", apturet);
+      //alert(check);
+      //APTURET true NOZIME KA EVENTS
+      // IZSAUKTS KAD NESPIEŽ
+      if(apturet === false){
+      //PIESKAITA
+      //console.log("neaptur");
+      if(pieskaita === true){
+        //console.log("japieskaita");
+        //alert("pieskaita");
+        if(xaxis != 220){
+        xaxis2 = xaxis+5;
+        
+        } else {
+        xaxis2 = xaxis;
+        }
+        
+      } else {
+        
+        //ATŅEM
+        //alert("atnem");
+        //console.log("atņem");
+        if(xaxis != 0){
+        xaxis2 = xaxis-5;
+        } else {
+        xaxis2 = xaxis;
+        }
+      }
+      
+      } else {
+        //console.log("aptur");
+        xaxis2 = xaxis;
+      }
+      
+      
+      if(apturet === false){
+        
+      canvas = document.getElementById("myCanvas");
+      ctx = canvas.getContext("2d");
+var canvas = document.getElementById("myCanvas"); 
+var ctx = canvas.getContext("2d");
+
+function drawBall() { 
+var img = new Image();
+img.src = "https://cf.shopee.com.my/file/ae0b063f9c1e094ee8c03eb5118973e5";
+img.onload = function() {
+        ctx.drawImage(img, xaxis2, yaxis, 80, 80);
+      };
+      
+      a = xaxis2;
+      b = yaxis;
+} 
+  
+function draw(){ 
+    if(apturet === false){
+    ctx.clearRect(0, 0, canvas.width, canvas.height); 
+    drawBall();
+    }
+} 
+  
+  setTimeout(draw, 90);
+  
+}
+}
+
+
+
+//greet draws element up and down
+//in y axis
+// also greet clears rectangles that were old position on rectangle
+
+function greety(xaxis, yaxis, pieskaita, apturet) {
+      c = xaxis;
+      d = yaxis;
+      //alert(apturet);
+      //alert(apturet);
+      //console.log("ko darit", apturet);
+      //alert(check);
+      //APTURET true NOZIME KA EVENTS
+      // IZSAUKTS KAD NESPIEŽ
+      if(apturet === false){
+      //PIESKAITA
+      //console.log("neaptur");
+      if(pieskaita === true){
+        //console.log("japieskaita");
+        //alert("pieskaita");
+        if(yaxis != 220){
+        yaxis2 = yaxis+5;
+        
+        } else {
+        yaxis2 = yaxis;
+        }
+        
+      } else {
+        
+        //ATŅEM
+        //alert("atnem");
+        //console.log("atņem");
+        if(yaxis != 0){
+        yaxis2 = yaxis-5;
+        } else {
+        yaxis2 = yaxis;
+        }
+      }
+      
+      } else {
+        //console.log("aptur");
+        yaxis2 = yaxis;
+      }
+      
+      
+      if(apturet === false){
+        
+      canvas = document.getElementById("myCanvas");
+      ctx = canvas.getContext("2d");
+var canvas = document.getElementById("myCanvas"); 
+var ctx = canvas.getContext("2d");
+
+function drawBall2() { 
+var img = new Image();
+img.src = "https://cf.shopee.com.my/file/ae0b063f9c1e094ee8c03eb5118973e5";
+img.onload = function() {
+        ctx.drawImage(img, xaxis, yaxis2, 80, 80);
+      };
+      a = xaxis;
+      b = yaxis2;
+} 
+  
+function draw2(){ 
+    if(apturet === false){
+    ctx.clearRect(0, 0, canvas.width, canvas.height); 
+    drawBall2();
+    }
+} 
+  
+  setTimeout(draw2, 90);
+  
+}
+}
+
+    
+
+// starting coordinates and main variables of rectangles
+
+var a = 100;
+var b = 100;
+
+
+  
+  //selects left control 
+  //to use addeventlistener to it
+  let dragItem = document.querySelector("#left");
+  //let container = document.querySelector("#container");
+  let timePressed = 0;
+  let press = false; 
+  
+  
+  
+  dragItem.addEventListener("mousedown", pressingDown, false); 
+  dragItem.addEventListener("mouseup", notPressingDown, false);
+  dragItem.addEventListener("touchstart", pressingDown, false); 
+  dragItem.addEventListener("touchend", notPressingDown, false);
+  
+  
+  
+  //functiom that counts how long have
+  // you been pressing on button
+  function counter() { 
+  if (press) { 
+
+  timePressed++; 
+  console.log("spiežu kreisi", timePressed);
+  if(timePressed <= 25){
+  scaleItem(); 
+  }
+  
+  if(timePressed > 25){
+  press = false;
+  //e.stopPropagation();
+  }
+  
+  } else { 
+  timePressed = 0; 
+  //resetItem(); 
+  } 
+  //this should request as many frames as counter function has been run
+   
+   if(timePressed <= 25){
+  requestAnimationFrame(counter);
+  }
+   
+   
+  } 
+  
+  
+  counter();
+  //if eventhandler know you were pressing down this function
+  //turns on press
+  function pressingDown(e) 
+  { 
+  press = true;
+  e.preventDefault(); 
+  
+  }
+ 
+ //if you end pressing it turns off press
+  function notPressingDown(e) 
+  { 
+  press = false; 
+  console.log("partraucu spiest");
+  e.stopPropagation();
+  } 
+  
+  //the function that calls greet to draw element based on global
+  // variables that define location
+  function scaleItem() { 
+    let size = 1 + timePressed / 50;
+    //console.log(size);
+    if (size > 1.02) { 
+   // console.log("būtu jāmainas");
+  c = a;
+  d = b;
+  //console.log("x");
+  //console.log("y");
+  //console.log(d);
+ // console.log("pieskaita =");
+  pieskaita = false;
+ // console.log(pieskaita);
+  //alert(check);
+  apturet = false;
+ // console.log("neapturēt");
+ console.log("apturet", apturet);
+ console.log("pieskaita", pieskaita);
+ if(c != 220 || c != 0){
+  greet(c, d, pieskaita, apturet);
+ }
+    }
+  } 
+  
+ // function resetItem() { 
+  //  press = false;
+ //   c = a;
+  //  d = b;
+ //   pieskaita = false;
+    //alert(check);
+ //   apturet = true;
+//    greet(c, d, pieskaita, apturet);
+    
+//  }
+  
+  
+  
+  
+  
+  let dragItem2 = document.querySelector("#right");
+  //let container = document.querySelector("#container");
+  let timePressed2 = 0;
+  let press2 = false; 
+  
+  dragItem2.addEventListener("mousedown", pressingDown2, false); 
+  dragItem2.addEventListener("mouseup", notPressingDown2, false);
+  dragItem2.addEventListener("touchstart", pressingDown2, false); 
+  dragItem2.addEventListener("touchend", notPressingDown2, false);
+  
+  
+  function counter2() { 
+  if (press2) { 
+  timePressed2++; 
+  console.log("spiežu labi", timePressed2);
+  if(timePressed2 <= 25){
+  scaleItem2(); 
+  
+  }
+  if(timePressed2 >25){
+  press2 = false;
+  //e.stopPropagation();
+  }
+  
+  } else { 
+  timePressed2 = 0; 
+  //resetItem2(); 
+  } 
+  if(timePressed2 <= 25){
+  requestAnimationFrame(counter2); 
+  }
+  } 
+  
+  counter2();
+  
+  function pressingDown2(e) 
+  { 
+  press2 = true;
+  e.preventDefault(); 
+  
+  }
+ 
+  function notPressingDown2(e) 
+  { 
+  press2 = false; 
+  console.log("partraucu spiest");
+  e.stopPropagation();
+  
+  } 
+  
+  function scaleItem2() { 
+    let size2 = 1 + timePressed2 / 50;
+    
+    console.log("cik piespiests", size2);
+    
+    if (size2 > 1.02) { 
+      size2 = 2; 
+  c = a;
+  d = b;
+  pieskaita = true;
+  //alert(check);
+  apturet = false;
+  console.log("apturet", apturet);
+  console.log("pieskaita", pieskaita);
+  if(c != 220 || c != 0){
+  greet(c, d, pieskaita, apturet);
+  }
+    }
+  } 
+  
+  function resetItem2() { 
+    press = false;
+    c = a;
+    d = b;
+    pieskaita = false;
+    //alert(check);
+    apturet = true;
+    greet(c, d, pieskaita, apturet);
+    
+  }
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  let dragItem3 = document.querySelector("#up");
+  //let container = document.querySelector("#container");
+  let timePressed3 = 0;
+  let press3 = false; 
+  
+  dragItem3.addEventListener("mousedown", pressingDown3, false); 
+  dragItem3.addEventListener("mouseup", notPressingDown, false);
+  dragItem3.addEventListener("touchstart", pressingDown3, false); 
+  dragItem3.addEventListener("touchend", notPressingDown3, false);
+  
+  function counter3() { 
+  if (press3) { 
+
+  timePressed3++; 
+  console.log("spiežu uz augšu", timePressed3);
+  if(timePressed3 <= 25){
+  scaleItem3(); 
+ 
+  }
+  if(timePressed3 >25){
+  press3 = false;
+  //e.stopPropagation();
+  }
+  
+  } else { 
+  timePressed3 = 0; 
+  //resetItem(); 
+  } 
+   if(timePressed3 <= 25){
+   requestAnimationFrame(counter3); 
+   }
+  } 
+  
+  counter3();
+  
+  function pressingDown3(e) 
+  { 
+  press3 = true;
+  e.preventDefault(); 
+  
+  }
+ 
+  function notPressingDown3(e) 
+  { 
+  press3 = false; 
+  console.log("partraucu spiest");
+  e.stopPropagation();
+  
+  } 
+  
+  function scaleItem3() { 
+    let size3 = 1 + timePressed3 / 50;
+    //console.log(size);
+    if (size3 > 1.02) { 
+   // console.log("būtu jāmainas");
+  c = a;
+  d = b;
+  //console.log("x");
+  //console.log(c);
+  //console.log("y");
+  //console.log(d);
+ // console.log("pieskaita =");
+  pieskaita = false;
+ // console.log(pieskaita);
+  //alert(check);
+  apturet = false;
+ // console.log("neapturēt");
+ console.log("apturet", apturet);
+ console.log("pieskaita", pieskaita);
+ if(d != 220 || d != 0){
+  greety(c, d, pieskaita, apturet);
+ }
+    }
+  } 
+  
+  function resetItem3() { 
+    press3 = false;
+    c = a;
+    d = b;
+    pieskaita = false;
+    //alert(check);
+    apturet = true;
+    greet(c, d, pieskaita, apturet);
+    
+  }
+  
+  
+  
+  
+  
+  let dragItem4 = document.querySelector("#down");
+  //let container = document.querySelector("#container");
+  let timePressed4 = 0;
+  let press4 = false; 
+  
+  dragItem4.addEventListener("mousedown", pressingDown4, false); 
+  dragItem4.addEventListener("mouseup", notPressingDown4, false);
+  dragItem4.addEventListener("touchstart", pressingDown4, false); 
+  dragItem4.addEventListener("touchend", notPressingDown4, false);
+  
+  
+  
+  
+  function counter4() { 
+  if (press4) { 
+  timePressed4++; 
+  console.log("spiežu labi", timePressed4);
+  if(timePressed4 <= 25){
+  scaleItem4(); 
+  }
+  if(timePressed4 >25){
+  press4 = false;
+  //e.stopPropagation();
+  }
+  } else { 
+  timePressed4 = 0; 
+  //resetItem2(); 
+  } 
+  if(timePressed4 <= 25){
+  requestAnimationFrame(counter4); 
+  }
+  } 
+  
+  counter4();
+  
+  function pressingDown4(e) 
+  { 
+  press4 = true;
+  e.preventDefault(); 
+  
+  }
+ 
+  function notPressingDown4(e) 
+  { 
+  press4 = false; 
+  console.log("partraucu spiest");
+  
+  e.stopPropagation();
+  
+  } 
+  
+  function scaleItem4() { 
+    let size4 = 1 + timePressed4 / 50;
+    
+    console.log("cik piespiests", size4);
+    
+    if (size4 > 1.02) { 
+      size4 = 2; 
+  c = a;
+  d = b;
+  pieskaita = true;
+  //alert(check);
+  apturet = false;
+  console.log("apturet", apturet);
+  console.log("pieskaita", pieskaita);
+  if(d != 220 || d != 0){
+  greety(c, d, pieskaita, apturet);
+  }
+    }
+  } 
+  
+  function resetItem4() { 
+    press = false;
+    c = a;
+    d = b;
+    pieskaita = false;
+    //alert(check);
+    apturet = true;
+    greety(c, d, pieskaita, apturet);
+    
+  }
+  
+  
+  
+  
+  
+  
+  </script> 
+  </body> 
+  </html>
