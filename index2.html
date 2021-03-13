@@ -1,0 +1,1929 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bootstrap 5 Simple Admin Dashboard</title>
+  <link rel="stylesheet" href="res/bootstrap@5.0.0-alpha2.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+  
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="res/chartist.min.css">
+  <style>
+  canvas {
+  border:1px solid #d3d3d3;
+  }
+    .sidebar {
+      position: fixed;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      z-index: 100;
+      padding: 90px 0 0;
+      box-shadow: inset -1px 0 0 rgba(0, 0, 0, .1);
+      z-index: 99;
+    }
+
+    @media (max-width: 767.98px) {
+      .sidebar {
+        top: 11.5rem;
+        padding: 0;
+      }
+    }
+
+    .navbar {
+      box-shadow: inset 0 -1px 0 rgba(0, 0, 0, .1);
+    }
+
+    @media (min-width: 767.98px) {
+      .navbar {
+        top: 0;
+        position: sticky;
+        z-index: 999;
+      }
+    }
+
+    .sidebar .nav-link {
+      color: #333;
+    }
+
+    .sidebar .nav-link.active {
+      color: #0d6efd;
+    }
+  </style>
+</head>
+
+
+<body onload="startGame()">
+
+  <style>
+    #rotateMode {
+      border-radius: 50%;
+      width: 125px;
+      height: 125px;
+      background-color: gray;
+      color: white;
+      position: absolute;
+      top: 140px;
+
+      
+      
+    }
+
+    #left,
+    #right,
+    #up,
+    #down {
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      cursor: pointer;
+    }
+
+    #left,
+    #right {
+      top: 50%;
+      -webkit-transform: translateY(-50%);
+      -moz-transform: translateY(-50%);
+      transform: translateY(-50%);
+    }
+
+    #up,
+    #down {
+      left: 50%;
+      -webkit-transform: translateX(-50%);
+      -moz-transform: translateX(-50%);
+      transform: translateX(-50%);
+    }
+
+    #left {
+      left: 0;
+    }
+
+    #right {
+      right: 0;
+    }
+
+    #up {
+      top: 0;
+    }
+
+    #down {
+      bottom: 0;
+    }
+  </style>
+  <div class="circleBase" id="rotateMode">  
+	 <button id="left" class="btn btn-default btn-sm">
+      <span class="glyphicon glyphicon-arrow-left"></span>
+    </button>
+    <button  id="right" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-arrow-right"></span>
+    </button>
+    <button id="up" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-arrow-up"></span></button> 
+    <button  id="down" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-arrow-down"></span>
+    </button>
+  </div>
+
+
+  
+  
+
+    
+  <script>
+    var manaspele;
+
+  
+    function startGame() {
+
+      var img = new Image();
+      
+      //izmēri obstaklam
+      var width2 = 20;
+      var height2 = 20;
+      var x2 = 200;
+      var y2 = 150;
+      
+      var width3 = 20;
+      var height3 = 20;
+      var x3 = 240;
+      var y3 = 110;
+      
+      mansobjekts= new obstacle(width2, height2, x2, y2);
+      
+      mansobjekts2= new obstacle2(width3, height3, x3, y3);
+      
+      //izmēri charakteram
+      manaspele = new component(20, 20, 100, 100, width2, height2, x2, y2, width3, height3, x3, y3);
+      
+      laukums.start();
+    }
+    
+    
+    
+    
+
+    var laukums = {
+      canvas: document.createElement("canvas"),
+      start: function() {
+        this.canvas.width = 300;
+        this.canvas.height = 300;
+        this.context = this.canvas.getContext("2d");
+        document.body.insertBefore(this.canvas, document.body.childNodes[0]);
+        this.interval = setInterval(atjaunotlaukumu, 280);
+        
+      },
+      clear: function() {
+        this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
+      }
+    }
+
+//myGamePiece = component
+    function component(width2, height2, x2, y2, width3, height3, x3, y3, width4, height4, x4, y4) {
+      labi = 0;
+      		      //console.log("labi3", labi);
+
+      //pa kreisi
+      kreisi = 0;
+      //uz augšu
+      augsu = 0;
+      //uz leju
+      leju = 0;
+
+
+
+newPos.apply(this, arguments);
+	
+	updatewidth = arguments[0];
+	updateheight = arguments[1];
+	updatex = x;
+	updatey = y;
+	
+      //console.log(arguments.length);
+      
+
+      //const args3 = Object.values(args2); 
+      //const args4 = Object.keys(args2);
+
+	//var componentargument = arguments;
+	 // console.log("nelasa argume", arguments);
+//console.log("kompontents argumenti kurus padod tālāk", arguments);
+
+//newPos.apply(this, arguments);
+      
+      //šie mainīgie jādabū no obstacle
+      //this.width3 = width3;
+      //this.height3 = height3;
+      ////šie mainīgie jādabū no obstacle
+      //this.x3 = x3;
+      //this.y3 = y3;
+      
+      
+      characterwidth = 40;
+	characterheight = 40;
+      
+
+     
+
+//this.newPos.apply(null, arguments);
+
+
+this.update = function() {
+        ctx = laukums.context;
+        var img = new Image();
+      img.src = "https://cf.shopee.com.my/file/ae0b063f9c1e094ee8c03eb5118973e5";
+        ctx.drawImage(img, updatex, updatey, characterwidth, characterheight);
+
+      }
+
+
+this.newPos = function() {
+	
+      //let characterwidth = 40;
+	//let characterheight = 40;
+      let VISAMALA = 300 - characterwidth;
+
+console.log(VISAMALA);
+
+
+
+console.log("ARGUMENTI", arguments.length)
+
+let saskaras = false;
+let saskarasX = false;
+let saskarasY = false;
+
+//var argrr = arguments.map(x => JSON.parse(x));
+
+
+
+
+   var args2 = arguments; //this takes all given 
+//arguments to function
+let numCallbackRuns = 0; //this is iteration that get to 3 and goes to 0
+var nextmas = 0; //this is array number which changes every 4 iterations
+var argskey = 0; // variable for while loop that gets added + 1 every loop
+var toghether;
+// the array that will hold other arrays
+var collections = [];
+
+// while variable is below count of arguments given
+// function loop will happen
+//console.log("wtfff", arguments[0].length);
+
+
+var name;
+var name2;
+var name3;
+var name4;
+var values;
+var values2;
+var values3;
+var values4;
+var toghether;
+
+console.log("ITERACIJA", argskey);
+console.log("LIDZ KURAI", arguments.length);
+
+while(argskey < arguments.length){ 
+//every iteration has 4 choices of iteration ID = numCallbackRuns
+
+
+
+//console.log("wtfff", arguments.length);
+
+if(numCallbackRuns == 0){
+// values on given iteration ID are taken from arguments 
+// iteration ID
+//values == arguments[argskey];
+console.log("nultais callbackruns izaucas ", values);
+
+///PIEVIENOQ QQQQQ
+name = '[' + arguments[argskey] + ', ';
+//console.log("wtf", arguments[argskey]);
+
+console.log("wtf1", name);
+
+}
+if(numCallbackRuns == 1){
+	console.log("pirmais callbackruns izaucas ");
+
+//values2 = arguments[argskey];
+
+name2 = arguments[argskey] + ', ';
+}
+if(numCallbackRuns == 2){
+	console.log("otrais callbackruns izaucas ");
+
+//values3 = arguments[argskey];
+
+name3 = arguments[argskey] + ', ';
+}
+
+if(numCallbackRuns == 3){
+	console.log("trešais callbackruns izaucas ");
+
+//values4 = arguments[argskey];
+
+name4 = arguments[argskey] + ']';
+}
+
+
+
+
+
+//if iteration ID has not yet reached 3, add iteration ID
+// else next array ID is given to nextmas (++)
+if(numCallbackRuns != 3){
+ numCallbackRuns++;
+ } else {
+
+toghether = name + name2 + name3 + name4;
+//console.log("wtf", toghether);
+
+collections.push(toghether);
+
+
+nextmas++;   
+numCallbackRuns = 0;
+}
+
+//every loop cycle adds default value that
+//is compared to argument element lenght
+argskey++;
+}
+      
+     //var strr = JSON.stringify(collections);
+      //strr = strr.replace('"','');
+      //strr = strr.replace('"','');
+      //strr = strr.replace('"','');
+      //strr = strr.replace('"','');
+
+
+//var lsout = ['', '', '', ''];
+//var lsout2 = [['10', '20', '30-', '40'],['50', '60', '70', '80'],['90', '100', '110', '120'],['130', '140', '150', '160']];
+
+//console.log("kolekcija", strr);
+
+//var argskey22 = 0; 
+
+
+
+
+//lsout2.forEach(
+	//function(a){
+	
+	
+	
+		//function(a) {
+			
+			//lsout[i] += a[i];
+		//}
+	//}
+
+//);
+
+
+
+
+
+
+//for(let i = 0; i < collections.length; i++){ 
+//let childArray = collections[i]; 
+//for(let j = 0; j < childArray.length; j++){ 
+//console.log("kaut kads masivs", childArray[j]); 
+//}
+//}
+//var count = 0;
+//var argskeys2 = 0;
+//var argskeys3 = 0;
+//for(var i = 0; i < strr.length; ++i){
+    //if(strr[i] == "q")
+        //count++;
+        ////CIK MASĪVU
+//}
+//var numCallbackRuns2 = 0; 
+//var countkopa = count * 4;
+
+
+//console.log("lenght", collections.length);
+//console.log("arguments", arguments);
+
+
+
+//collection.forEach(([key, value]) => console.log(key, value));
+
+ //var newStuff =collections.map(function(item,index){
+  //return item.replace('["','')
+
+//});
+
+collection = collections.map(x => JSON.parse(x));
+
+console.log("newstuff", collection[0]);
+console.log("arguments", arguments);
+//collection.forEach(([key, value]) => console.log(key, value));
+
+for(let index = 0; index < collection[0].length; index++) {
+	const selection = collection.map(innerArray => innerArray[index]);
+ //console.log("selection", selection);
+  
+  //selectionlength = selection.length;
+  //for(let index2 = 0; index2 < selection.length; index2++) {
+
+//}
+
+
+if(index == 0){
+	selectionx = selection;
+ console.log("selection x masīvs", selectionx);
+
+}
+if(index == 1){
+		selectiony = selection;
+
+ console.log("selection y masīvs", selectiony);
+
+}
+if(index == 2){
+		selectionw = selection;
+
+  console.log("selection width masīvs", selectionw);
+
+}
+if(index == 3){
+		selectionh = selection;
+
+ console.log("selection height masīvs", selection);
+
+}
+
+////if iteration ID has not yet reached 3, add iteration ID
+//// else next array ID is given to nextmas (++)
+//if(numCallbackRuns3 != 3){
+ //numCallbackRuns3++;
+ //} else {
+  
+//numCallbackRuns3 = 0;
+//}
+  
+}
+
+//var ieksavertiba;
+//for (var i=0; i<collections.length; i++) {
+    //collections[i] = [collections[i]];
+
+
+
+//if(numCallbackRuns == 0){
+//valuer = collections[i];
+//console.log("valuer", valuer);
+//}
+//if(numCallbackRuns == 1){
+
+//}
+//if(numCallbackRuns == 2){
+
+//}
+//if(numCallbackRuns == 3){
+
+//}
+
+////if iteration ID has not yet reached 3, add iteration ID
+//// else next array ID is given to nextmas (++)
+//if(numCallbackRuns != 3){
+ //numCallbackRuns++;
+ //} else {
+
+//nextmas++;   
+//numCallbackRuns = 0;
+//}
+
+
+
+//}
+
+
+
+////IZPILDAS UZ KATRU MASĪVU
+//var ieksavertiba;
+//var ieksavertiba2;
+
+//do {
+  //argskeys2 = argskeys2 + 1;
+//ieksavertiba = collections[i]
+
+//ieksavertiba = collections.replace('q','');
+//ieksavertiba2 = JSON.parse(ieksavertiba);
+
+//console.log("wut" , ieksavertiba2);
+
+//console.log("8 reizes");
+
+////console.log("countkopa", countkopa);
+////console.log("argskeys2", argskeys2);
+
+//console.log("times run ", argskeys2);
+
+//} while (argskeys2 < countkopa);
+
+
+	
+	
+     //console.log("kolekcija", strr);
+      //should print array with two inside arrays
+      // both having 4 values
+ 
+      
+ //args.forEach(function(argsi) { 
+      
+ //console.log("argi", argarrays);
+  
+ //});
+ 
+ 
+      
+      //console.log(VISAMALA);
+
+
+
+
+
+
+
+  // for(var i = 0; i < argss.length; i++){
+     
+     
+ //  }
+
+//2 un 4 arguments 
+// LOOP CAURI Y UN HEIGHT MASĪVAM LAI IZVEIDOTU MASĪVU AR APAKŠĒJAS MALAS VĒRTĪBĀM
+var argskeyy = 0;
+var argskeyx = 0;
+var argskeyw = 0;
+var argskeyh = 0;
+var collectionsY = [];
+var collectionsX = [];
+var collectionsW = [];
+var collectionsH = [];
+
+while(argskeyy < selectiony.length){
+	num = selectiony[argskeyy];
+	
+	collectionsY.push(num);
+argskeyy++;
+}
+
+while(argskeyx < selectionx.length){
+	num2 = selectionx[argskeyx];
+	collectionsX.push(num2);
+argskeyx++;
+}
+
+while(argskeyw < selectionw.length){
+	num3 = selectionw[argskeyw];
+	
+	collectionsW.push(num3);
+argskeyw++;
+}
+while(argskeyh < selectionh.length){
+	num4 = selectionh[argskeyh];
+	collectionsH.push(num4);
+argskeyh++;
+}
+
+var argskeymalam = 0;
+var apaksejamala_mas = [];
+var kreisamala_mas = [];
+var augsejamala_mas = [];
+var labamala_mas = [];
+
+var elementimalas = (collection.length * 4);
+console.log("argskeymalam", collections);
+
+
+while(argskeymalam < elementimalas){
+
+console.log("width", collectionsW[argskeymalam]);
+
+
+let apaksejamala = (collectionsY[argskeymalam] + collectionsH[argskeymalam]);
+
+
+if(apaksejamala){
+apaksejamala_mas.push(apaksejamala);
+}
+
+
+let kreisamala = (collectionsW[argskeymalam] - collectionsX[argskeymalam]);
+
+
+if(kreisamala){
+
+kreisamala_mas.push(kreisamala);
+}
+
+let augsejamala = (collectionsH[argskeymalam] - collectionsY[argskeymalam]);
+if(augsejamala){
+augsejamala_mas.push(augsejamala);
+}
+
+let labamala = (collectionsX[argskeymalam] + collectionsW[argskeymalam]);
+
+if(labamala){
+labamala_mas.push(labamala);
+}
+
+argskeymalam++;
+}
+
+
+//console.log("labamalamas", labamalamas);
+
+var argskeysmalam2 = 0;
+var saskarasXLABA_mas = [];
+var saskarasYAUGSA_mas = [];
+var saskarasXKREISA_mas = [];
+var saskarasYLEJA_mas = [];
+
+
+
+
+while(argskeysmalam2 < elementimalas){
+
+	console.log("kreisa", kreisamala_mas[argskeysmalam2]);
+	console.log("laba", labamala_mas[argskeysmalam2]);
+
+
+if(collectionsX[argskeysmalam2] < labamala_mas[argskeysmalam2]){
+if(collectionsX[argskeysmalam2] > kreisamala_mas[argskeysmalam2]){
+	
+	
+	
+saskarasX = true;	
+//console.log("pushojas labas malas X", labamala_mas[argskeysmalam2]);
+console.log("pushojas kreisa malas X", kreisamala_mas[argskeysmalam2]);
+
+
+
+saskarasXLABA_mas.push(saskarasX);
+}
+}
+
+
+
+if(collectionsY[argskeysmalam2] < apaksejamala_mas[argskeysmalam2]){
+if(collectionsY[argskeysmalam2] > augsejamala_mas[argskeysmalam2]){
+saskarasY = true;	
+saskarasYAUGSA_mas.push(saskarasY);
+}
+}
+if(collectionsX[argskeysmalam2] > labamala_mas[argskeysmalam2]){
+if(collectionsX[argskeysmalam2] < kreisamala_mas[argskeysmalam2]){
+saskarasX2 = true;	
+saskarasXKREISA_mas.push(saskarasX2);
+}
+}
+
+if(collectionsY[argskeysmalam2] > apaksejamala_mas[argskeysmalam2]){
+if(collectionsY[argskeysmalam2] < augsejamala_mas[argskeysmalam2]){
+saskarasY2 = true;	
+saskarasYLEJA_mas.push(saskarasY2);
+}
+}
+
+
+
+
+argskeysmalam2++;
+}
+
+
+
+
+
+var elementimalas_sask = saskarasXLABA_mas.length + saskarasXKREISA_mas.length + saskarasYAUGSA_mas.length + saskarasYLEJA_mas.length;
+
+
+var argskeysmalam3 = 0;
+
+var saskarasLABI = false;
+var saskarasLEJA = false;
+var saskarasKREISI = false;
+var saskarasAUGSA = false;
+
+
+
+while(argskeysmalam3 < elementimalas_sask){
+if((saskarasXLABA_mas[argskeysmalam3] === true) && (saskarasYAUGSA_mas[argskeysmalam3] === true)){
+console.log("saskaras laba mala un augsas mala");
+saskarasLABI == true;
+saskarasLEJA == true;
+}
+if((saskarasXLABA_mas[argskeysmalam3] === true) && (saskarasYAUGSA_mas[argskeysmalam3] === false)){
+
+console.log("saskaras laba mala un nesaskaras augsas mala");
+saskarasLABI == true;
+saskarasLEJA == false;
+}
+
+if((saskarasXLABA_mas[argskeysmalam3] === false) && (saskarasYAUGSA_mas[argskeysmalam3] === true)){
+console.log("nesaskaras laba mala un saskaras augsas mala");
+saskarasLABI == false;
+saskarasLEJA == true;
+}
+
+
+if((saskarasXLABA_mas[argskeysmalam3] === false) && (saskarasYAUGSA_mas[argskeysmalam3] === false)){
+console.log("nesaskaras laba mala un nesaskaras augsas mala");
+saskarasLABI == false;
+saskarasLEJA == false;
+}
+
+
+
+if((saskarasXLABA_mas[argskeysmalam3] === true) && (saskarasYLEJA_mas[argskeysmalam3] === true)){
+console.log("saskaras laba mala un saskaras lejas mala");
+
+saskarasLABI == true;
+saskarasLEJA == true;
+}
+
+
+if((saskarasXLABA_mas[argskeysmalam3] === true) && (saskarasYLEJA_mas[argskeysmalam3] === false)){
+
+console.log("saskaras laba mala un nesaskaras lejas mala");
+
+saskarasLABI == true;
+saskarasLEJA == false;
+}
+
+if((saskarasXLABA_mas[argskeysmalam3] === false) && (saskarasYLEJA_mas[argskeysmalam3] === true)){
+console.log("nesaskaras laba mala un saskaras lejas mala");
+
+saskarasLABI == false;
+saskarasLEJA == true;
+}
+
+
+if((saskarasXLABA_mas[argskeysmalam3] === false) && (saskarasYLEJA_mas[argskeysmalam3] === false)){
+console.log("nesaskaras laba mala un nesaskaras lejas mala");
+
+saskarasLABI == false;
+saskarasLEJA == false;
+}
+
+if((saskarasXKREISA_mas[argskeysmalam3] === true) && (saskarasYAUGSA_mas[argskeysmalam3] === true)){
+console.log("saskaras kreisa mala un saskaras augsas mala");
+
+saskarasKREISI == true;
+saskarasAUGSA == true;
+}
+if((saskarasXKREISA_mas[argskeysmalam3] === true) && (saskarasYAUGSA_mas[argskeysmalam3] === false)){
+
+console.log("saskaras kreisa mala un nesaskaras augsas mala");
+
+saskarasKREISI == true;
+saskarasAUGSA == false;
+}
+
+if((saskarasXKREISA_mas[argskeysmalam3] === false) && (saskarasYAUGSA_mas[argskeysmalam3] === true)){
+console.log("nesaskaras kreisa mala un saskaras augsas mala");
+
+saskarasKREISI == false;
+saskarasAUGSA == true;
+}
+
+
+if((saskarasXKREISA_mas[argskeysmalam3] === false) && (saskarasYAUGSA_mas[argskeysmalam3] === false)){
+console.log("nesaskaras kreisa mala un nesaskaras augsas mala");
+
+saskarasKREISI == false;
+saskarasAUGSA == false;
+}
+
+
+if((saskarasXKREISA_mas[argskeysmalam3] === true) && (saskarasYLEJA_mas[argskeysmalam3] === true)){
+console.log("saskaras kreisa mala un saskaras lejas mala");
+
+saskarasKREISI == true;
+saskarasLEJA == true;
+}
+if((saskarasXKREISA_mas[argskeysmalam3] === true) && (saskarasYLEJA_mas[argskeysmalam3] === false)){
+
+console.log("saskaras kreisa mala un nesaskaras lejas mala");
+
+saskarasKREISI == true;
+saskarasLEJA == false;
+}
+
+if((saskarasXKREISA_mas[argskeysmalam3] === false) && (saskarasYLEJA_mas[argskeysmalam3] === true)){
+console.log("nesaskaras kreisa mala un saskaras lejas mala");
+
+saskarasKREISI == false;
+saskarasLEJA == true;
+}
+
+
+if((saskarasXKREISA_mas[argskeysmalam3] === false) && (saskarasYLEJA_mas[argskeysmalam3] === false)){
+console.log("nesaskaras kreisa mala un nesaskaras ;ejas mala");
+
+saskarasKREISI == false;
+saskarasLEJA == false;
+}
+
+argskeysmalam3++;
+}
+
+
+
+console.log("LABI",saskarasLABI);
+console.log("KREISI",saskarasKREISI);
+console.log("AUGSA",saskarasAUGSA);
+console.log("LEJA", saskarasLEJA);
+
+
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+//////////////////////
+/////////// IZIET NO EKRANA y ASI
+////////////////////////
+
+///////////////////////////////
+///////////////////////////////////
+/////////////////// ALGORITMS
+///////////////////////////////
+///////////////////////////////////
+
+///////////////////////////////
+///////////////////////////////////
+
+///////////////////////////////
+///////////////////////////////////
+//////////////////////
+/////////// IZIET NO EKRANA y ASI
+////////////////////////
+
+
+
+
+
+
+
+
+//////////////////////
+/////////// IZIET NO EKRANA y ASI
+////////////////////////
+
+
+var IZIETY = 0;
+while(IZIETY < elementimalas){
+
+
+if(collectionsY[IZIETY] < 0){
+	updatey = 0;
+	console.log("iziet no ekrana zem 0 y asī ");
+}
+if(collectionsY[IZIETY] > VISAMALA){
+	updatey = VISAMALA;
+	console.log("iziet no ekrana virs VISAMALA y asī");
+}
+IZIETY++;
+
+}
+//////////////////////
+/////////// IZIET NO EKRANA y ASI
+////////////////////////
+
+//////////////////////
+/////////// IZIET NO EKRANA X ASI
+////////////////////////
+
+var IZIETX = 0;
+while(IZIETX < elementimalas){
+	
+if(collectionsX[IZIETX] < 0){
+	updatex = 0;
+	console.log("iziet no ekrana zem 0 x asī ");
+}
+if(collectionsX[IZIETX] > VISAMALA){
+	updatex = VISAMALA;
+	console.log("iziet no ekrana virs VISAMALA x asī");
+}
+IZIETX++;
+}
+//////////////////////
+/////////// IZIET NO EKRANA X ASI
+////////////////////////
+
+//////////////////////
+/////////// X IR VISAMALA
+////////////////////////
+
+var IZIETX2 = 0;
+while(IZIETX2 < elementimalas){
+	
+if(collectionsX[IZIETX2] === VISAMALA){
+	updatex -= kreisi;
+	console.log("vajadzētu ņemt pa kreisi");
+}
+IZIETX2++;
+}
+//////////////////////
+/////////// X IR VISAMALA
+////////////////////////
+
+
+//////////////////////
+/////////// 0 x asi
+//////////////////////// 
+
+var IZIETX3 = 0;
+while(IZIETX3 < elementimalas){
+	
+if(collectionsX[IZIETX3] === 0){
+	updatex += labi;
+	console.log("vajadzētu ņemt pa labi");
+}
+IZIETX3++;
+}
+//////////////////////
+/////////// 0 x asi
+//////////////////////// 
+
+
+
+//////////////////////
+/////////// 0 y asi
+//////////////////////// 
+
+var IZIETY2 = 0;
+while(IZIETY2 < elementimalas){
+	
+	
+if(collectionsY[IZIETY2] === 0){
+	updatey += leju;
+	console.log("vajadzētu ņemt uz leju");
+}
+IZIETY2++;
+}
+//////////////////////
+/////////// 0 y asi
+//////////////////////// 
+
+
+
+//////////////////////
+/////////// LIMITI STARP 0 UN VISAMALA x
+////////////////////////
+
+
+
+
+
+
+
+var WHATX = 0;
+while(WHATX < elementimalas){
+	
+	
+if(collectionsX[WHATX] > 0){
+	//console.log(VISAMALA);
+	
+	
+	if(collectionsX[WHATX] < VISAMALA){
+		
+		if(saskarasKREISI === false && saskarasLABI === false){
+	
+		updatex += labi;
+		updatex -= kreisi;
+	} else if(saskarasKREISI === false && saskarasLABI === true){
+		
+		
+
+		updatex -= labi;
+		updatex += kreisi;
+		console.log("laba mala 2", labi);
+	
+
+
+	} else if(saskarasKREISI === true && saskarasLABI === false){
+	
+		updatex += labi;
+		updatex -= kreisi;
+		console.log("kreisa mala 2", kreisi);
+
+	
+} else if(saskarasKREISI === true && saskarasLABI === true){
+
+updatex;
+
+
+}
+			
+} else {
+
+console.log("sasniegta labā mala", VISAMALA);
+	console.log("sasniegta labā mala bet x", updatex);
+		console.log("saskārās aiz malas", saskaras);
+		if(saskarasKREISI === false && saskarasLABI === false){
+	
+		updatex += kreisi;
+		//updatex -= kreisi;
+	} else if(saskarasKREISI === false && saskarasLABI === true){
+		
+		
+
+		updatex;
+		console.log("laba mala 2", labi);
+	
+
+
+	} else if(saskarasKREISI === true && saskarasLABI === true){
+
+updatex;
+
+
+}
+
+
+}
+	
+	 //else if(saskarasKREISI === true && saskarasLABI === false){
+	
+		//updatex += labi;
+		//updatex -= kreisi;
+		//console.log("kreisa mala 2", kreisi);
+
+	
+//}
+	
+
+
+
+
+} 
+
+if(collectionsX[WHATX] = 0){
+
+console.log("sasniegta kreisā mala");
+if(saskarasKREISI === false && saskarasLABI === false){
+	
+		updatex += labi;
+		//updatex -= kreisi;
+	} else if(saskarasKREISI === false && saskarasLABI === true){
+		
+		
+
+		updatex;
+		console.log("laba mala 2", labi);
+	
+
+
+	} else if(saskarasKREISI === true && saskarasLABI === true){
+
+updatex;
+
+
+}
+
+
+
+
+}
+
+
+WHATX++;
+}
+
+//////////////////////
+/////////// LIMITI STARP 0 UN VISAMALA x
+////////////////////////
+
+
+//////////////////////
+/////////// Y IR VISAMALA
+////////////////////////
+var IZIETY3 = 0;
+while(IZIETY3 < elementimalas){
+	
+	
+if(collectionsY[IZIETY3] === VISAMALA){
+	updatey -= augsu;
+	console.log("vajadzētu ņemt uz augšu");
+}
+
+IZIETY3++;
+}
+//////////////////////
+/////////// Y IR VISAMALA
+////////////////////////
+
+//////////////////////
+/////////// LIMITI STARP 0 UN VISAMALA y
+////////////////////////
+
+
+
+
+
+
+var WHATY = 0;
+while(WHATY < elementimalas){
+
+if(collectionsY[WHATY] > 0){
+	//console.log(VISAMALA);
+	
+	
+	if(collectionsY[WHATY] < VISAMALA){
+		
+		if(saskarasLEJU === false && saskarasAUGSU === false){
+	
+		updatey += augsu;
+		updatey -= leju;
+	} else if(saskarasLEJU === false && saskarasAUGSU === true){
+		
+		
+
+		updatey -= augsu;
+		updatey += leju;
+		console.log("laba mala 2", augsu);
+	
+
+
+	} else if(saskarasLEJU === true && saskarasAUGSU === false){
+	
+		updatey += augsu;
+		updatey -= leju;
+		console.log("kreisa mala 2", leju);
+
+	
+} else if(saskarasLEJU === true && saskarasAUGSU === true){
+
+updatey;
+
+
+}
+			
+} else {
+
+console.log("sasniegta labā mala", VISAMALA);
+	console.log("sasniegta labā mala bet y", updatey);
+		console.log("saskārās aiz malas", saskaras);
+		if(saskarasLEJU === false && saskarasAUGSU === false){
+	
+		updatey += leju;
+		//updatey -= leju;
+	} else if(saskarasLEJU === false && saskarasAUGSU === true){
+		
+		
+
+		updatey;
+		console.log("laba mala 2", augsu);
+	
+
+
+	} else if(saskarasLEJU === true && saskarasAUGSU === true){
+
+updatey;
+
+
+}
+
+
+}
+	
+	 //else if(saskarasLEJU === true && saskarasAUGSU === false){
+	
+		//updatey += augsu;
+		//updatey -= leju;
+		//console.log("kreisa mala 2", leju);
+
+	
+//}
+	
+
+
+
+
+} 
+
+if(collectionsY[WHATY] = 0){
+
+console.log("sasniegta kreisā mala");
+if(saskarasLEJU === false && saskarasAUGSU === false){
+	
+		updatey += augsu;
+		//updatey -= leju;
+	} else if(saskarasLEJU === false && saskarasAUGSU === true){
+		
+		
+
+		updatey;
+		console.log("laba mala 2", augsu);
+	
+
+
+	} else if(saskarasLEJU === true && saskarasAUGSU === true){
+
+updatey;
+
+
+}
+
+
+
+
+}
+
+
+
+WHATY++;
+}
+
+//////////////////////
+/////////// LIMITI STARP 0 UN VISAMALA  y
+////////////////////////
+
+
+
+
+
+
+/// beidzas NEW POS
+}
+
+
+
+//BEIDZAS COMPONENT
+}
+
+
+
+
+
+
+
+
+function obstacle(width2, height2, x2, y2) {
+      this.width2 = width2;
+      this.height2 = height2;
+      //pa labi
+      //this.speedX = 0;
+      //pa kreisi
+      //this.speedX2 = 0;
+      //uz augšu
+      //this.speedY = 0;
+      //uz leju
+      //this.speedY2 = 0;
+      
+      //labi = 0;
+      //kreisi = 0;
+      //leju = 0;
+      //augsu = 0;
+      
+      this.x2 = x2;
+      this.y2 = y2;
+      
+      
+      
+      
+      this.updateobstacle = function() {
+        ctx2 = laukums.context;
+        var img2 = new Image();
+      img2.src = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTzA0fJazoZNa5BBNto8gSelNXTKqDx8VqePw&usqp=CAU";
+        ctx2.drawImage(img2, this.x2, this.y2, this.width2, this.height2);
+
+      }
+      this.newPosObstacle = function() {
+       this.x2 = x2;
+       this.y2 = y2;
+}
+        
+}
+
+
+
+function obstacle2(width3, height3, x3, y3) {
+      this.width3 = width3;
+      this.height3 = height3;
+      //pa labi
+      //this.speedX = 0;
+      //pa kreisi
+      //this.speedX2 = 0;
+      //uz augšu
+      //this.speedY = 0;
+      //uz leju
+      //this.speedY2 = 0;
+      
+      //labi = 0;
+      //kreisi = 0;
+      //leju = 0;
+      //augsu = 0;
+      
+      this.x3 = x3;
+      this.y3 = y3;
+      
+      
+      
+      
+      this.updateobstacle2 = function() {
+        ctx3 = laukums.context;
+        var img3 = new Image();
+      img3.src = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTzA0fJazoZNa5BBNto8gSelNXTKqDx8VqePw&usqp=CAU";
+        ctx2.drawImage(img3, this.x3, this.y3, this.width3, this.height3);
+
+      }
+      this.newPosObstacle2 = function() {
+       this.x3 = x3;
+       this.y3 = y3;
+}
+        
+}
+
+
+
+
+
+
+
+    function atjaunotlaukumu() {
+      laukums.clear();
+      
+      
+      manaspele.newPos();
+      
+      
+      manaspele.update();
+      
+      mansobjekts.newPosObstacle();
+      mansobjekts.updateobstacle();
+      
+      mansobjekts2.newPosObstacle2();
+      mansobjekts2.updateobstacle2();
+    }
+
+
+//const handleKeyDown = ({ key }) => {
+  //switch(key){
+    //case 'ArrowLeft':
+      //pressingDown();
+    //break;
+    //case 'ArrowRight':
+      //pressingDown2();
+    //break;
+    //case 'ArrowUp':
+      //pressingDown3();
+    //break;
+    //case 'ArrowDown':
+      //pressingDown4();
+    //break;
+    
+  //}
+  	//event.preventDefault();
+ //}
+
+//const moves = {
+  //left: pressingDown(),
+  //right: pressingDown2(),
+  //up: pressingDown3(),
+  //down: pressingDown4(),
+//};
+
+//const handleKeyDown = ({ key }) => {
+  //if(moves[key]){
+    //moves[key]();
+  //}
+//}
+
+
+//const endmoves = {
+  //left: notPressingDown(),
+  //right: notPressingDown2(),
+  //up: notPressingDown3(),
+  //down: notPressingDown4(),
+//}
+
+//const handleKeyDown2 = ({ key }) => {
+//if(endmoves[key]){
+//endmoves[key]();
+//}
+//}
+
+//let circlebase = document.querySelector("circleBase"); 
+//circlebase.addEventListener("mousedown", handleKeyDown); 
+//circlebase.addEventListener("mouseup", handleKeyDown2); 
+//circlebase.addEventListener("touchstart", handleKeyDown); 
+//circlebase.addEventListener("touchend", handleKeyDown2); 
+
+
+
+
+//////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////
+
+//let item = document.querySelector("#left"); 
+////let timerID; 
+let counter = 0; 
+////let pressHoldEvent = new CustomEvent("pressHold1"); 
+////let pressHoldDuration = 30; 
+//item.addEventListener("mousedown", pressingDown, false); 
+//item.addEventListener("mouseup", notPressingDown, false); 
+//item.addEventListener("mouseleave", notPressingDown, false); 
+//item.addEventListener("touchstart", pressingDown, false); 
+//item.addEventListener("touchend", notPressingDown, false);
+
+//if(notiekfunkcija === false){
+//parent.removeEventListener("mousedown", pressingDown, true);
+//parent.removeEventListener("mouseup", notPressingDown, true);
+//parent.removeEventListener("touchstart", pressingDown, true);
+//parent.removeEventListener("touchend", notPressingDown, true);
+//parent.removeEventListener("mousedown", pressingDown2, true);
+//parent.removeEventListener("mouseup", notPressingDown2, true);
+//parent.removeEventListener("touchstart", pressingDown2, true);
+//parent.removeEventListener("touchend", notPressingDown2, true);
+//parent.removeEventListener("mousedown", pressingDown3, true);
+//parent.removeEventListener("mouseup", notPressingDown3, true);
+//parent.removeEventListener("touchstart", pressingDown3, true);
+//parent.removeEventListener("touchend", notPressingDown3, true);
+//parent.removeEventListener("mousedown", pressingDown4, true);
+//parent.removeEventListener("mouseup", notPressingDown4, true);
+//parent.removeEventListener("touchstart", pressingDown4, true);
+//parent.removeEventListener("touchend", notPressingDown4, true);
+//}
+
+
+ var parent = document.querySelector('.circleBase');
+    //var left = document.querySelector('#left');
+    //var right = document.querySelector('#right');
+    //var up = document.querySelector('#up');
+    //var down = document.querySelector('#down');
+//alert(parent);
+  
+    parent.addEventListener('mousedown', function(e){
+      switch (e.target.id) {
+        case 'left':
+          pressingDown(e);
+          //console.log('doing left things');
+          break;
+        case 'right':
+            pressingDown2(e);
+          //console.log('doing right things');
+          break;
+        case 'up':
+          pressingDown3(e);
+          ///console.log('doing up things');
+          break;
+        case 'down':
+          pressingDown4(e);
+          //console.log('doing down things');
+          break;
+          e.preventDefault();
+      }
+      			//e.preventDefault();
+
+    },true);
+
+
+    parent.addEventListener('mouseup', function(e){
+      switch (e.target.id) {
+        case 'left':
+           notPressingDown(e);
+          //console.log('doing left things');
+          break;
+        case 'right':
+          notPressingDown2(e);
+          //console.log('doing right things');
+          break;
+        case 'up':
+            notPressingDown3(e);
+          //console.log('doing up things');
+          break;
+        case 'down':
+          notPressingDown4(e);
+          //console.log('doing down things');
+          break;
+        
+          e.preventDefault();
+      }
+      			//e.preventDefault();
+
+    },true);
+  
+     parent.addEventListener('touchstart', function(e){
+      switch (e.target.id) {
+        case 'left':
+          pressingDown(e);
+          console.log('doing left things');
+          break;
+        case 'right':
+            pressingDown2(e);
+          //console.log('doing right things');
+          break;
+        case 'up':
+          pressingDown3(e);
+          ///console.log('doing up things');
+          break;
+        case 'down':
+          pressingDown4(e);
+          //console.log('doing down things');
+          break;
+        
+          e.preventDefault();
+      }
+      			//e.preventDefault();
+
+    },true);
+
+   parent.addEventListener('touchend', function(e){
+      switch (e.target.id) {
+        case 'left':
+           notPressingDown(e);
+          //console.log('doing left things');
+          break;
+        case 'right':
+          notPressingDown2(e);
+          //console.log('doing right things');
+          break;
+        case 'up':
+            notPressingDown3(e);
+          //console.log('doing up things');
+          break;
+        case 'down':
+          notPressingDown4(e);
+          //console.log('doing down things');
+          break;
+        
+          e.preventDefault();
+      }
+      			//e.preventDefault();
+
+    },true);
+
+
+
+
+
+
+
+
+
+var notiekfunkcija = false;
+
+function pressingDown(e) { 
+ // requestAnimationFrame(moveleft);
+ notiekfunkcija = true;
+ counter++;
+ moveleft();
+ e.preventDefault(); 
+  //pressHoldDuration++;
+} 
+  
+  function notPressingDown(e) { 
+	  notiekfunkcija = true;
+    //cancelAnimationFrame(timerID);
+   //pressHoldDuration--; 
+   parent.removeEventListener("touchstart", console.log("partrauc touchstart"), true);
+   parent.removeEventListener("touchend", console.log("partrauc touchend"), true);
+   
+   parent.removeEventListener("mouseon", console.log("partrauc mouseon"), true);
+   parent.removeEventListener("mousedown", console.log("partrauc mousedown"), true);
+   
+   
+   console.log("atspieda");
+    counter = 0;
+    counter2 = 0;
+    counter3 = 0;
+    counter4 = 0;
+    labi = 0;
+    kreisi = 0;
+    leju = 0;
+    augsu = 0;
+    
+ } 
+
+//////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////      
+   
+//let item2 = document.querySelector("#right"); 
+let counter2 = 0; 
+////let pressHoldEvent2 = new CustomEvent("pressHold2"); 
+////let pressHoldDuration2 = 30; 
+//item2.addEventListener("mousedown", pressingDown2, false); 
+//item2.addEventListener("mouseup", notPressingDown2, false); 
+//item2.addEventListener("mouseleave", notPressingDown2, false); 
+//item2.addEventListener("touchstart", pressingDown2, false); 
+//item2.addEventListener("touchend", notPressingDown2, false);
+
+
+
+function pressingDown2(e) { 
+	notiekfunkcija = true;
+ //requestAnimationFrame(moveright);
+ counter2++;
+ moveright();
+ 
+  e.preventDefault(); 
+  //counter2++;
+} 
+  
+ function notPressingDown2(e) { 
+	 notiekfunkcija = true;
+   console.log("atspieda");
+   //cancelAnimationFrame(timerID2);
+   // pressHoldDuration2 = 0; 
+   parent.removeEventListener("touchstart", console.log("partrauc touchstart"), true);
+   parent.removeEventListener("touchend", console.log("partrauc touchend"), true);
+   parent.removeEventListener("mouseon", console.log("partrauc mouseon"), true);
+   parent.removeEventListener("mousedown", console.log("partrauc mousedown"), true);
+   
+   
+    counter = 0;
+    counter2 = 0;
+    counter3 = 0;
+    counter4 = 0;
+     labi = 0;
+    kreisi = 0;
+    leju = 0;
+    augsu = 0;
+    
+ } 
+
+//////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////   
+   
+//let item3 = document.querySelector("#up"); 
+////let timerID3; 
+let counter3 = 0; 
+////let pressHoldEvent3 = new CustomEvent("pressHold3"); 
+////let pressHoldDuration3 = 65; 
+//item3.addEventListener("mousedown", pressingDown3, false); 
+//item3.addEventListener("mouseup", notPressingDown3, false); 
+//item3.addEventListener("mouseleave", notPressingDown3, false); 
+//item3.addEventListener("touchstart", pressingDown3, false); 
+//item3.addEventListener("touchend", notPressingDown3, false);
+
+
+
+function pressingDown3(e) { 
+	notiekfunkcija = true;
+ //requestAnimationFrame(moveup);
+ counter3++;
+ moveup();
+  e.preventDefault(); 
+  //pressHoldDuration3++;
+} 
+  
+ function notPressingDown3(e) { 
+	 notiekfunkcija = true;
+  // cancelAnimationFrame(timerID3);
+    //pressHoldDuration3 = 0; 
+    parent.removeEventListener("touchstart", console.log("partrauc touchstart"), true);
+    parent.removeEventListener("touchend", console.log("partrauc touchend"), true);
+    parent.removeEventListener("mouseon", console.log("partrauc mouseon"), true);
+    parent.removeEventListener("mousedown", console.log("partrauc mousedown"), true);
+    
+    counter = 0;
+    counter2 = 0;
+    counter3 = 0;
+    counter4 = 0;
+     labi = 0;
+    kreisi = 0;
+    leju = 0;
+    augsu = 0;
+ } 
+
+   
+   
+//////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////
+
+
+//let item4 = document.querySelector("#down"); 
+let counter4 = 0; 
+////let pressHoldEvent4 = new CustomEvent("pressHold4"); 
+////let pressHoldDuration4 = 0; 
+//item4.addEventListener("mousedown", pressingDown4, false); 
+//item4.addEventListener("mouseup", notPressingDown4, false); 
+//item4.addEventListener("mouseleave", notPressingDown4, false); 
+//item4.addEventListener("touchstart", pressingDown4, false); 
+//item4.addEventListener("touchend", notPressingDown4, false);
+
+function pressingDown4(e) { 
+	notiekfunkcija = true;
+ //requestAnimationFrame(movedown);
+ counter4++;
+ movedown();
+  e.preventDefault(); 
+  //pressHoldDuration4++;
+} 
+  
+ function notPressingDown4(e) { 
+	 notiekfunkcija = true;
+   //cancelAnimationFrame(timerID4);
+    //pressHoldDuration4 = 0; 
+    parent.removeEventListener("touchstart", console.log("partrauc touchstart"), true);
+    parent.removeEventListener("touchend", console.log("partrauc touchend"), true);
+    parent.removeEventListener("mouseon", console.log("partrauc mouseon"), true);
+    parent.removeEventListener("mousedown", console.log("partrauc mousedown"), true);
+    
+    
+    counter = 0;
+    counter2 = 0;
+    counter3 = 0;
+    counter4 = 0;
+   labi = 0;
+    kreisi = 0;
+    leju = 0;
+    augsu = 0;
+ } 
+//////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////
+
+     
+     
+      
+function moveleft() {
+	      
+
+if (counter != 0) { 
+  console.log("left"); 
+	//timerID = requestAnimationFrame(moveleft); 
+     // counter++;
+    //  var showalertleft = true;
+      //pressHoldDuration++;
+    // setTimeout(function() { 
+    //   showalertleft = false; 
+    //   manaspele.speedX2 = 0;
+    // }, 2500);
+     
+     
+     //console.log("pa kreisi", showalertleft);
+   // if(showalertleft = true){
+     kreisi = 1;
+  //   }
+     
+      } else { 
+        //counter++;
+        //console.log(counter);
+        
+        //}
+        
+        
+        //console.log(pressHoldDuration);
+        //if(pressHoldDuration === 0){
+          
+          counter = 0;
+          counter2 = 0;
+          counter3 = 0;
+          counter4 = 0;
+       labi = 0;
+    kreisi = 0;
+    leju = 0;
+    augsu = 0;
+         // console.log("atspiedi pa kreisi", pressHoldDuration);
+        //}
+       
+    }
+    }
+ 
+ 
+ 
+ 
+ 
+    function moveright() {
+      
+      
+  if (counter2 != 0) {
+	   //timerID2 = requestAnimationFrame(moveright); 
+	   //pressHoldDuration2++;
+      //counter2++;
+      console.log("right"); 
+      
+     // var showalertright = true;
+     //setTimeout(function() { 
+       //showalertright = false; 
+      // manaspele.speedX = 0;
+     //}, 2500);
+     
+     //console.log("pa labi", showalertright);
+     
+     
+   // if(showalertright = true){
+     labi = 1;
+    //}
+    
+      } else {
+          counter = 0;
+          counter2 = 0;
+          counter3 = 0;
+          counter4 = 0;
+    labi = 0;
+    kreisi = 0;
+    leju = 0;
+    augsu = 0;
+          //console.log("atspiedi pa labi", pressHoldDuration2);
+    }
+}
+
+
+
+
+function moveup() {
+      
+      
+  if (counter3 != 0) {
+	   //timerID2 = requestAnimationFrame(moveright); 
+	   //pressHoldDuration2++;
+      //counter2++;
+      console.log("up"); 
+      
+     // var showalertright = true;
+     //setTimeout(function() { 
+       //showalertright = false; 
+      // manaspele.speedX = 0;
+     //}, 2500);
+     
+     //console.log("pa labi", showalertright);
+     
+     
+   // if(showalertright = true){
+     augsu = 1;
+    //}
+    
+      } else {
+          counter = 0;
+          counter2 = 0;
+          counter3 = 0;
+          counter4 = 0;
+           labi = 0;
+    kreisi = 0;
+    leju = 0;
+    augsu = 0;
+          //console.log("atspiedi pa labi", pressHoldDuration2);
+    }
+}
+
+
+
+function movedown() {
+      
+      
+  if (counter4 != 0) {
+	   //timerID2 = requestAnimationFrame(moveright); 
+	   //pressHoldDuration2++;
+      //counter2++;
+      console.log("down"); 
+      
+     // var showalertright = true;
+     //setTimeout(function() { 
+       //showalertright = false; 
+      // manaspele.speedX = 0;
+     //}, 2500);
+     
+     //console.log("pa labi", showalertright);
+     
+     
+   // if(showalertright = true){
+     leju = 1;
+    //}
+    
+      } else {
+          counter = 0;
+          counter2 = 0;
+          counter3 = 0;
+          counter4 = 0;
+           labi = 0;
+    kreisi = 0;
+    leju = 0;
+    augsu = 0;
+          //console.log("atspiedi pa labi", pressHoldDuration2);
+    }
+}
+
+
+
+
+
+
+    
+
+  </script>
+
+</body>
+
+</html>

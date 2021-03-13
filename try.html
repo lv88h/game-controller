@@ -1,22 +1,675 @@
 <html>
-<script>
+	<style>
+	 canvas {
+  border:1px solid #d3d3d3;
+  }
+    .sidebar {
+      position: fixed;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      z-index: 100;
+      padding: 90px 0 0;
+      box-shadow: inset -1px 0 0 rgba(0, 0, 0, .1);
+      z-index: 99;
+    }
+
+    @media (max-width: 767.98px) {
+      .sidebar {
+        top: 11.5rem;
+        padding: 0;
+      }
+    }
+
+    .navbar {
+      box-shadow: inset 0 -1px 0 rgba(0, 0, 0, .1);
+    }
+
+    @media (min-width: 767.98px) {
+      .navbar {
+        top: 0;
+        position: sticky;
+        z-index: 999;
+      }
+    }
+
+    .sidebar .nav-link {
+      color: #333;
+    }
+
+    .sidebar .nav-link.active {
+      color: #0d6efd;
+    }
+    
+    
+      #rotateMode {
+      border-radius: 50%;
+      width: 125px;
+      height: 125px;
+      background-color: gray;
+      color: white;
+      position: absolute;
+      top: 140px;
+
+      
+      
+    }
+
+    #left,
+    #right,
+    #up,
+    #down {
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      cursor: pointer;
+    }
+
+    #left,
+    #right {
+      top: 50%;
+      -webkit-transform: translateY(-50%);
+      -moz-transform: translateY(-50%);
+      transform: translateY(-50%);
+    }
+
+    #up,
+    #down {
+      left: 50%;
+      -webkit-transform: translateX(-50%);
+      -moz-transform: translateX(-50%);
+      transform: translateX(-50%);
+    }
+
+    #left {
+      left: 0;
+    }
+
+    #right {
+      right: 0;
+    }
+
+    #up {
+      top: 0;
+    }
+
+    #down {
+      bottom: 0;
+    }
+	</style>
+<body onload="startGame()">
+ <div class="circleBase" id="rotateMode">  
+	 <button id="left" class="btn btn-default btn-sm">
+      <span class="glyphicon glyphicon-arrow-left"></span>
+    </button>
+    <button  id="right" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-arrow-right"></span>
+    </button>
+    <button id="up" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-arrow-up"></span></button> 
+    <button  id="down" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-arrow-down"></span>
+    </button>
+  </div>
+
+ 
+ 
+ <script>
+ var manaspele;
+
+  
+    function startGame() {
+
+      var img = new Image();
+      
+      //izmēri obstaklam
+      var width = 20;
+      var height = 20;
+      var x = 200;
+      var y = 150;
+      
+      var width2 = 20;
+      var height2 = 20;
+      var x2 = 240;
+      var y2 = 110;
+      
+      //mansobjekts= new obstacle(width2, height2, x2, y2);
+      
+      
+      //izmēri charakteram
+      manaspele = new component(width, height, x, y, width2, height2, x2, y2);
+      
+      laukums.start();
+      console.log("labi", labi);
+
+    }
+    
+    
+    
+    
+
+    var laukums = {
+      canvas: document.createElement("canvas"),
+      start: function() {
+        this.canvas.width = 300;
+        this.canvas.height = 300;
+        this.context = this.canvas.getContext("2d");
+        document.body.insertBefore(this.canvas, document.body.childNodes[0]);
+        this.interval = setInterval(atjaunotlaukumu, 280);
+        
+      },
+      clear: function() {
+        this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
+      }
+    }
+//myGamePiece = component
+    function component(width, height, x, y, width2, height2, x2, y2) {
+      //pa labi
+      labi = 0;
+      		      console.log("labi3", labi);
+
+      //pa kreisi
+      kreisi = 0;
+      //uz augšu
+      augsu = 0;
+      //uz leju
+      leju = 0;
+
+      console.log("newPos");
 
 
-collection = ["[20, 20, 100, 100]" , "[20, 20, 200, 150]"];
+	
+	updatewidth = arguments[0];
+	updateheight = arguments[1];
+	updatex = x;
+	updatey = y;
+	
+	this.update = function() {
+		      console.log("labi2", labi);
 
-collection.map(x => JSON.parse(x));
+	//var updatewidth2 = arguments[0];
+	//var updateheight2 = arguments[1];
+	//var updatex2 = arguments[2];
+	//var updatey2 = arguments[3];
+      //console.log("update width", updatewidth2);
 
-console.log("newstuff", collection);
+        ctx = laukums.context;
+        var img = new Image();
+      img.src = "https://cf.shopee.com.my/file/ae0b063f9c1e094ee8c03eb5118973e5";
+        ctx.drawImage(img, updatex, updatey, updatewidth, updateheight);
+
+      }
 
 
-function a(...args){
-  b(...args);
-  //b(6, ...args, 8) // You can even add more elements
+this.newPos = function() {
+//I need arguments from component for some logic not written in code
+ 	x += labi;
+  x += kreisi;
+	y += augsu;
+  y += leju;
 }
-function b(){
-  console.log(arguments)
+
+newPos.apply(this, arguments);
+	
 }
 
-a(1, 2, 3)
+
+
+ function atjaunotlaukumu() {
+      laukums.clear();
+      manaspele.newPos();
+      manaspele.update();
+    }
+    
+    
+    
+    
+ 
+ 
+ 
+ 
+
+
+ var parent = document.querySelector('.circleBase');
+    //var left = document.querySelector('#left');
+    //var right = document.querySelector('#right');
+    //var up = document.querySelector('#up');
+    //var down = document.querySelector('#down');
+//alert(parent);
+  
+    parent.addEventListener('mousedown', function(e){
+      switch (e.target.id) {
+        case 'left':
+          pressingDown(e);
+          //console.log('doing left things');
+          break;
+        case 'right':
+            pressingDown2(e);
+          //console.log('doing right things');
+          break;
+        case 'up':
+          pressingDown3(e);
+          ///console.log('doing up things');
+          break;
+        case 'down':
+          pressingDown4(e);
+          //console.log('doing down things');
+          break;
+          e.preventDefault();
+      }
+      			//e.preventDefault();
+
+    },true);
+
+
+    parent.addEventListener('mouseup', function(e){
+      switch (e.target.id) {
+        case 'left':
+           notPressingDown(e);
+          //console.log('doing left things');
+          break;
+        case 'right':
+          notPressingDown2(e);
+          //console.log('doing right things');
+          break;
+        case 'up':
+            notPressingDown3(e);
+          //console.log('doing up things');
+          break;
+        case 'down':
+          notPressingDown4(e);
+          //console.log('doing down things');
+          break;
+        
+          e.preventDefault();
+      }
+      			//e.preventDefault();
+
+    },true);
+  
+     parent.addEventListener('touchstart', function(e){
+      switch (e.target.id) {
+        case 'left':
+          pressingDown(e);
+          console.log('doing left things');
+          break;
+        case 'right':
+            pressingDown2(e);
+          //console.log('doing right things');
+          break;
+        case 'up':
+          pressingDown3(e);
+          ///console.log('doing up things');
+          break;
+        case 'down':
+          pressingDown4(e);
+          //console.log('doing down things');
+          break;
+        
+          e.preventDefault();
+      }
+      			//e.preventDefault();
+
+    },true);
+
+   parent.addEventListener('touchend', function(e){
+      switch (e.target.id) {
+        case 'left':
+           notPressingDown(e);
+          //console.log('doing left things');
+          break;
+        case 'right':
+          notPressingDown2(e);
+          //console.log('doing right things');
+          break;
+        case 'up':
+            notPressingDown3(e);
+          //console.log('doing up things');
+          break;
+        case 'down':
+          notPressingDown4(e);
+          //console.log('doing down things');
+          break;
+        
+          e.preventDefault();
+      }
+      			//e.preventDefault();
+
+    },true);
+
+
+
+
+
+
+var notiekfunkcija = false;
+
+function pressingDown(e) { 
+ // requestAnimationFrame(moveleft);
+ notiekfunkcija = true;
+ counter++;
+ moveleft();
+ e.preventDefault(); 
+  //pressHoldDuration++;
+} 
+  
+  function notPressingDown(e) { 
+	  notiekfunkcija = true;
+    //cancelAnimationFrame(timerID);
+   //pressHoldDuration--; 
+   parent.removeEventListener("touchstart", console.log("partrauc touchstart"), true);
+   parent.removeEventListener("touchend", console.log("partrauc touchend"), true);
+   
+   parent.removeEventListener("mouseon", console.log("partrauc mouseon"), true);
+   parent.removeEventListener("mousedown", console.log("partrauc mousedown"), true);
+   
+   
+   console.log("atspieda");
+    counter = 0;
+    counter2 = 0;
+    counter3 = 0;
+    counter4 = 0;
+ labi = 0;
+    kreisi = 0;
+    leju = 0;
+    augsu = 0;
+    
+ } 
+
+//////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////      
+   
+//let item2 = document.querySelector("#right"); 
+let counter2 = 0; 
+////let pressHoldEvent2 = new CustomEvent("pressHold2"); 
+////let pressHoldDuration2 = 30; 
+//item2.addEventListener("mousedown", pressingDown2, false); 
+//item2.addEventListener("mouseup", notPressingDown2, false); 
+//item2.addEventListener("mouseleave", notPressingDown2, false); 
+//item2.addEventListener("touchstart", pressingDown2, false); 
+//item2.addEventListener("touchend", notPressingDown2, false);
+
+
+
+function pressingDown2(e) { 
+	notiekfunkcija = true;
+ //requestAnimationFrame(moveright);
+ counter2++;
+ moveright();
+ 
+  e.preventDefault(); 
+  //counter2++;
+} 
+  
+ function notPressingDown2(e) { 
+	 notiekfunkcija = true;
+   console.log("atspieda");
+   //cancelAnimationFrame(timerID2);
+   // pressHoldDuration2 = 0; 
+   parent.removeEventListener("touchstart", console.log("partrauc touchstart"), true);
+   parent.removeEventListener("touchend", console.log("partrauc touchend"), true);
+   parent.removeEventListener("mouseon", console.log("partrauc mouseon"), true);
+   parent.removeEventListener("mousedown", console.log("partrauc mousedown"), true);
+   
+   
+    counter = 0;
+    counter2 = 0;
+    counter3 = 0;
+    counter4 = 0;
+ labi = 0;
+    kreisi = 0;
+    leju = 0;
+    augsu = 0;
+    
+ } 
+
+//////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////   
+   
+//let item3 = document.querySelector("#up"); 
+////let timerID3; 
+let counter3 = 0; 
+////let pressHoldEvent3 = new CustomEvent("pressHold3"); 
+////let pressHoldDuration3 = 65; 
+//item3.addEventListener("mousedown", pressingDown3, false); 
+//item3.addEventListener("mouseup", notPressingDown3, false); 
+//item3.addEventListener("mouseleave", notPressingDown3, false); 
+//item3.addEventListener("touchstart", pressingDown3, false); 
+//item3.addEventListener("touchend", notPressingDown3, false);
+
+
+
+function pressingDown3(e) { 
+	notiekfunkcija = true;
+ //requestAnimationFrame(moveup);
+ counter3++;
+ moveup();
+  e.preventDefault(); 
+  //pressHoldDuration3++;
+} 
+  
+ function notPressingDown3(e) { 
+	 notiekfunkcija = true;
+  // cancelAnimationFrame(timerID3);
+    //pressHoldDuration3 = 0; 
+    parent.removeEventListener("touchstart", console.log("partrauc touchstart"), true);
+    parent.removeEventListener("touchend", console.log("partrauc touchend"), true);
+    parent.removeEventListener("mouseon", console.log("partrauc mouseon"), true);
+    parent.removeEventListener("mousedown", console.log("partrauc mousedown"), true);
+    
+    counter = 0;
+    counter2 = 0;
+    counter3 = 0;
+    counter4 = 0;
+ labi = 0;
+    kreisi = 0;
+    leju = 0;
+    augsu = 0;
+ } 
+
+   
+   
+//////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////
+
+
+//let item4 = document.querySelector("#down"); 
+let counter4 = 0; 
+////let pressHoldEvent4 = new CustomEvent("pressHold4"); 
+////let pressHoldDuration4 = 0; 
+//item4.addEventListener("mousedown", pressingDown4, false); 
+//item4.addEventListener("mouseup", notPressingDown4, false); 
+//item4.addEventListener("mouseleave", notPressingDown4, false); 
+//item4.addEventListener("touchstart", pressingDown4, false); 
+//item4.addEventListener("touchend", notPressingDown4, false);
+
+function pressingDown4(e) { 
+	notiekfunkcija = true;
+ //requestAnimationFrame(movedown);
+ counter4++;
+ movedown();
+  e.preventDefault(); 
+  //pressHoldDuration4++;
+} 
+  
+ function notPressingDown4(e) { 
+	 notiekfunkcija = true;
+   //cancelAnimationFrame(timerID4);
+    //pressHoldDuration4 = 0; 
+    parent.removeEventListener("touchstart", console.log("partrauc touchstart"), true);
+    parent.removeEventListener("touchend", console.log("partrauc touchend"), true);
+    parent.removeEventListener("mouseon", console.log("partrauc mouseon"), true);
+    parent.removeEventListener("mousedown", console.log("partrauc mousedown"), true);
+    
+    
+    counter = 0;
+    counter2 = 0;
+    counter3 = 0;
+    counter4 = 0;
+    labi = 0;
+    kreisi = 0;
+    leju = 0;
+    augsu = 0;
+ } 
+//////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////
+
+     
+     
+      
+function moveleft() {
+	      
+
+if (counter != 0) { 
+  console.log("left"); 
+	//timerID = requestAnimationFrame(moveleft); 
+     // counter++;
+    //  var showalertleft = true;
+      //pressHoldDuration++;
+    // setTimeout(function() { 
+    //   showalertleft = false; 
+    //   manaspele.speedX2 = 0;
+    // }, 2500);
+     
+     
+     //console.log("pa kreisi", showalertleft);
+   // if(showalertleft = true){
+     kreisi = 1;
+  //   }
+     
+      } else { 
+        //counter++;
+        //console.log(counter);
+        
+        //}
+        
+        
+        //console.log(pressHoldDuration);
+        //if(pressHoldDuration === 0){
+          
+          counter = 0;
+          counter2 = 0;
+          counter3 = 0;
+          counter4 = 0;
+ labi = 0;
+    kreisi = 0;
+    leju = 0;
+    augsu = 0;
+         // console.log("atspiedi pa kreisi", pressHoldDuration);
+        //}
+       
+    }
+    }
+ 
+ 
+ 
+ 
+ 
+    function moveright() {
+      
+      
+  if (counter2 != 0) {
+	   //timerID2 = requestAnimationFrame(moveright); 
+	   //pressHoldDuration2++;
+      //counter2++;
+      console.log("right"); 
+      
+     // var showalertright = true;
+     //setTimeout(function() { 
+       //showalertright = false; 
+      // manaspele.speedX = 0;
+     //}, 2500);
+     
+     //console.log("pa labi", showalertright);
+     
+     
+   // if(showalertright = true){
+     labi = 1;
+    //}
+    
+      } else {
+          counter = 0;
+          counter2 = 0;
+          counter3 = 0;
+          counter4 = 0;
+          labi = 0;
+          kreisi = 0;
+          leju = 0;
+          augsu = 0;
+          //console.log("atspiedi pa labi", pressHoldDuration2);
+    }
+}
+
+
+
+
+function moveup() {
+      
+      
+  if (counter3 != 0) {
+	   //timerID2 = requestAnimationFrame(moveright); 
+	   //pressHoldDuration2++;
+      //counter2++;
+      console.log("up"); 
+      
+     // var showalertright = true;
+     //setTimeout(function() { 
+       //showalertright = false; 
+      // manaspele.speedX = 0;
+     //}, 2500);
+     
+     //console.log("pa labi", showalertright);
+     
+     
+   // if(showalertright = true){
+     augsu = 1;
+    //}
+    
+      } else {
+          counter = 0;
+          counter2 = 0;
+          counter3 = 0;
+          counter4 = 0;
+        labi = 0;
+    kreisi = 0;
+    leju = 0;
+    augsu = 0;
+          //console.log("atspiedi pa labi", pressHoldDuration2);
+    }
+}
+
+
+
+function movedown() {
+      
+      
+  if (counter4 != 0) {
+	   //timerID2 = requestAnimationFrame(moveright); 
+	   //pressHoldDuration2++;
+      //counter2++;
+      console.log("down"); 
+      
+     // var showalertright = true;
+     //setTimeout(function() { 
+       //showalertright = false; 
+      // manaspele.speedX = 0;
+     //}, 2500);
+     
+     //console.log("pa labi", showalertright);
+     
+     
+   // if(showalertright = true){
+     leju = 1;
+    //}
+    
+      } else {
+          counter = 0;
+          counter2 = 0;
+          counter3 = 0;
+          counter4 = 0;
+ labi = 0;
+    kreisi = 0;
+    leju = 0;
+    augsu = 0;
+          //console.log("atspiedi pa labi", pressHoldDuration2);
+    }
+}
  </script>
  </html>
