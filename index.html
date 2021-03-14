@@ -192,14 +192,14 @@ let saskarasY = false;
       //var y2 = 110;
       
       var bildite = ['https://cf.shopee.com.my/file/ae0b063f9c1e094ee8c03eb5118973e5'];
-      var bildite2 = ['images.jpeg'];
-      var bildite3 = ['images.jpeg'];
+      var bildite2 = ['https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQm4EF1to2p4JxQNvGMzrIbs_i7ADeAp8139g&usqp=CAU'];
+      var bildite3 = ['https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQm4EF1to2p4JxQNvGMzrIbs_i7ADeAp8139g&usqp=CAU'];
       var visasbildites = bildite.concat(bildite2, bildite3);
 
       
-      var objekts1 = [40, 40, 40, 40];
-      var objekts2 = [20, 20, 240, 110];
-      var objekts3 = [20, 20, 240, 110];
+      var objekts1 = [40, 40, 100, 100];
+      var objekts2 = [180, 20, 20, 20];
+      var objekts3 = [160, 90, 20, 20];
 
 var visiobjekti = objekts1.concat(objekts2, objekts3);
 
@@ -1532,7 +1532,7 @@ var updatehV = [];
 var ctxx = [];
 var katramsavuzimet = [];
 //var katramsavuzimet2 = [];
-    var img = new Array(); 
+    var img = []; 
 
 		console.log("visiobjekti.length", visiobjekti.length);
 		
@@ -1549,22 +1549,33 @@ katramsavuzimet.push(flattenkolekcija[i]);
 }
 					//console.log("pirms flatten", katramsavuzimet[3]);
 
-		for(var i2 = 0; i2 < 4; i2++){
+var callbacki2 = 0;
+		for(var i2 = 0; i2 < flattenkolekcija.length; i2++){
+		//console.log("updateyi2", i2);
 
-			if(i2 == 0){
+			if(callbacki2 == 0){
 			updatexV.push(katramsavuzimet[i2]);
 		}
-			if(i2 == 1){
+			if(callbacki2 == 1){
 			updateyV.push(katramsavuzimet[i2]);
 		}
-			if(i2 == 2){
+			if(callbacki2 == 2){
 			updatewV.push(katramsavuzimet[i2]);
 		}
-			if(i2 == 3){
+			if(callbacki2 == 3){
 			updatehV.push(katramsavuzimet[i2]);
 		}
 		
+		if(callbacki2 != 3){
+		callbacki2++;
+		} else {
+		callbacki2 = 0;
+		}
+		
 	}
+	
+	
+	console.log("updatey", updateyV);
 
 //katramsavuzimet2 = katramsavuzimet.map(x => JSON.parse(x));
 
@@ -1692,23 +1703,25 @@ var flattenx = updatexV.flat();
 var flatteny = updateyV.flat();
 var flattenw = updatewV.flat();
 var flattenh = updatehV.flat();
-var bildite = visasbildites.flat();
+var bilditeflat = visasbildites.flat();
 
-					console.log("augstums", flattenh);
-					console.log("bildite", bildite);
+					console.log("flatteny", flatteny);
+
+var bildishuskaits = bilditeflat.length;
+					console.log("bildishuskaits", bildishuskaits);
 
 
-
-for(h = 0; h < 4; h++){
+for(h = 0; h < bildishuskaits; h++){
 
 
 
 
 ctxx[h] = laukums.context;
 	img[h] = new Image(); 
-	      img[h].src = bildite[h];
+	      img[h].src = bilditeflat[h];
 	
-
+console.log("runs times", img[h]);
+console.log("bildes atrashanas vieta", flattenx[h]);
 
         ctxx[h].drawImage(img[h], flattenx[h], flatteny[h], flattenw[h], flattenh[h]);      
 
